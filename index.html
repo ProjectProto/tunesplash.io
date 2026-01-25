@@ -390,8 +390,17 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
         }
 
         .feature-card {
@@ -402,6 +411,24 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 280px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .feature-card::before {
@@ -426,6 +453,10 @@
             opacity: 1;
         }
 
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
         .feature-icon {
             width: 64px;
             height: 64px;
@@ -436,6 +467,7 @@
             font-size: 32px;
             margin-bottom: 24px;
             position: relative;
+            transition: transform 0.3s ease;
         }
 
         .feature-icon::after {
@@ -476,6 +508,7 @@
             color: var(--gray);
             line-height: 1.7;
             font-size: 1rem;
+            flex-grow: 1;
         }
 
         /* How it works */
@@ -818,6 +851,21 @@
             margin-bottom: 8px;
         }
 
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero-stats {
+                gap: 32px;
+            }
+
+            .steps-container {
+                gap: 24px;
+            }
+        }
+
         /* Mobile */
         @media (max-width: 768px) {
             .header-cta {
@@ -828,30 +876,116 @@
                 padding: 130px 0 80px;
             }
 
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                padding: 0 10px;
             }
 
             .hero-stats {
-                gap: 32px;
+                gap: 24px;
             }
 
             .stat-value {
-                font-size: 1.6rem;
+                font-size: 1.4rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
             }
 
             .store-button {
                 width: 100%;
                 justify-content: center;
+                padding: 14px 24px;
+            }
+
+            .store-button svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .store-button .big {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
             }
 
             .features, .how-it-works, .instruments, .cta {
-                padding: 70px 0;
+                padding: 60px 0;
+            }
+
+            .feature-card {
+                padding: 28px;
+                min-height: auto;
+            }
+
+            .feature-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 28px;
+            }
+
+            .feature-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .feature-card p {
+                font-size: 0.95rem;
+            }
+
+            .step-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .step-emoji {
+                font-size: 32px;
+            }
+
+            .step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+
+            .step h4 {
+                font-size: 1.1rem;
+            }
+
+            .step p {
+                font-size: 0.9rem;
+            }
+
+            .instrument-tag {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+
+            .instrument-tag .emoji {
+                font-size: 1.1rem;
             }
 
             .cta-box {
                 padding: 48px 24px;
                 border-radius: 24px;
+            }
+
+            .cta h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta p {
+                font-size: 1rem;
             }
 
             .footer-content {
@@ -870,6 +1004,46 @@
 
             .modal-content {
                 padding: 32px 24px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .modal-content h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 8px 16px;
+            }
+
+            .hero-stats {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .stat-value {
+                font-size: 1.2rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
             }
         }
     </style>
@@ -900,8 +1074,8 @@
                     <span class="highlight">Into Real Music</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Hum a melody, pick an instrument, and watch it transform into a professional song.
-                    No musical training needed. Just your voice and imagination.
+                    Hum a melody or draw it with your finger, pick an instrument, and watch it transform into a professional song.
+                    No musical training needed. Just your creativity and imagination.
                 </p>
 
                 <div class="hero-buttons" id="download">
