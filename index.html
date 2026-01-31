@@ -3,62 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuneSplash - Turn Your Humming Into Real Music | Free Music Creation App</title>
-
-    <!-- Primary SEO Meta Tags -->
-    <meta name="title" content="TuneSplash - Turn Your Humming Into Real Music | Free Music Creation App">
-    <meta name="description" content="Transform your humming into professional music with 13 instruments. Free music creation app - no ads, no sign-up, works offline. Create songs in seconds on Android.">
-    <meta name="keywords" content="music creation app, humming to music, melody maker, free music app, song creator, beat maker, music production, compose music, android music app, voice to instrument">
-    <meta name="author" content="TuneSplash">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
+    <title>TuneSplash - Create Music Instantly</title>
+    <meta name="description" content="Turn your humming into real music. Free, no ads, no sign-up. Create songs with 13 instruments in seconds.">
     <meta name="theme-color" content="#1a1a2e">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://tunesplash.io/">
-
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
+    <meta property="og:title" content="TuneSplash - Create Music Instantly">
+    <meta property="og:description" content="Turn your humming into real music. Free, no ads, no sign-up.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tunesplash.io/">
-    <meta property="og:title" content="TuneSplash - Turn Your Humming Into Real Music">
-    <meta property="og:description" content="Transform your humming into professional music with 13 instruments. Free, no ads, no sign-up required.">
-    <meta property="og:image" content="https://tunesplash.io/og-image.png">
-    <meta property="og:site_name" content="TuneSplash">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://tunesplash.io/">
-    <meta property="twitter:title" content="TuneSplash - Turn Your Humming Into Real Music">
-    <meta property="twitter:description" content="Transform your humming into professional music with 13 instruments. Free, no ads, no sign-up required.">
-    <meta property="twitter:image" content="https://tunesplash.io/og-image.png">
-
-    <!-- Structured Data / Schema.org -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "TuneSplash",
-        "description": "Transform your humming into professional music with 13 instruments. Free music creation app.",
-        "url": "https://tunesplash.io",
-        "applicationCategory": "MultimediaApplication",
-        "operatingSystem": "Android",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "ratingCount": "1"
-        }
-    }
-    </script>
+    <meta property="og:url" content="https://tunesplash.io">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23E53935'/%3E%3Cstop offset='100%25' stop-color='%23C62828'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23g)'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white'%3E%F0%9F%8E%B5%3C/text%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23E53935'/%3E%3Cstop offset='100%25' stop-color='%23C62828'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23g)'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white'%3E%F0%9F%8E%B5%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ProjectProto/TuneSplash/main/public/icon-192.png">
 
     <style>
         * {
@@ -71,57 +27,19 @@
             --primary: #E53935;
             --primary-dark: #C62828;
             --secondary: #1976D2;
-            --secondary-dark: #0D47A1;
-            --accent: #43A047;
             --dark: #1a1a2e;
-            --darker: #0f0f1a;
+            --darker: #12121f;
             --light: #ffffff;
-            --gray: #9ca3af;
-            --gray-light: #e5e7eb;
-            --card-bg: rgba(255,255,255,0.03);
-            --card-border: rgba(255,255,255,0.08);
-            --glow: rgba(229, 57, 53, 0.4);
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --gray: #a0a0a0;
+            --card-bg: rgba(255,255,255,0.05);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: var(--darker);
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
             color: var(--light);
             min-height: 100vh;
             overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            background:
-                radial-gradient(ellipse at 20% 20%, rgba(229, 57, 53, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(25, 118, 210, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(67, 160, 71, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
-        }
-
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
         }
 
         .container {
@@ -132,15 +50,15 @@
 
         /* Header */
         header {
-            padding: 16px 0;
+            padding: 20px 0;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 100;
-            background: rgba(15, 15, 26, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--card-border);
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .header-content {
@@ -153,108 +71,68 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
             text-decoration: none;
             color: var(--light);
         }
 
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 4px 15px var(--glow);
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
         }
 
         .header-cta {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: var(--primary);
             color: white;
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px var(--glow);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .header-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px var(--glow);
+            box-shadow: 0 10px 30px rgba(229, 57, 53, 0.3);
         }
 
         /* Hero */
         .hero {
-            padding: 160px 0 120px;
+            padding: 160px 0 100px;
             text-align: center;
-            position: relative;
-        }
-
-        .hero-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(229, 57, 53, 0.2) 0%, transparent 70%);
-            filter: blur(60px);
-            pointer-events: none;
         }
 
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(229, 57, 53, 0.15);
-            color: #ff6b6b;
-            padding: 10px 24px;
+            display: inline-block;
+            background: rgba(229, 57, 53, 0.2);
+            color: var(--primary);
+            padding: 8px 20px;
             border-radius: 50px;
             font-size: 0.875rem;
             font-weight: 600;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             border: 1px solid rgba(229, 57, 53, 0.3);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
         }
 
         .hero h1 {
-            font-size: clamp(2.8rem, 7vw, 4.5rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 28px;
-            letter-spacing: -0.02em;
-        }
-
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, #fff 0%, #fff 40%, var(--primary) 100%);
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--primary), #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
+        .hero p {
+            font-size: 1.25rem;
             color: var(--gray);
-            max-width: 640px;
-            margin: 0 auto 48px;
-            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
         }
 
         .hero-buttons {
@@ -262,31 +140,30 @@
             gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 64px;
+            margin-bottom: 60px;
         }
 
         .store-button {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             background: var(--light);
-            color: var(--darker);
-            padding: 16px 32px;
-            border-radius: 16px;
+            color: var(--dark);
+            padding: 14px 28px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .store-button:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .store-button svg {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
         }
 
         .store-button span {
@@ -295,575 +172,240 @@
 
         .store-button .small {
             font-size: 0.7rem;
-            font-weight: 500;
+            font-weight: 400;
             opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .store-button .big {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             display: block;
             margin-top: 2px;
         }
 
         .store-button.coming-soon {
-            background: rgba(255,255,255,0.1);
-            color: var(--gray);
+            opacity: 0.6;
             cursor: default;
-            border: 2px solid var(--card-border);
         }
 
-        .store-button.coming-soon:hover {
-            transform: none;
-            box-shadow: none;
-        }
-
-        .hero-stats {
+        .hero-features {
             display: flex;
             justify-content: center;
-            gap: 48px;
+            gap: 40px;
             flex-wrap: wrap;
+            color: var(--gray);
+            font-size: 0.95rem;
         }
 
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--light);
+        .hero-features span {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 4px;
+            gap: 8px;
         }
 
-        .stat-value .icon {
-            font-size: 1.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-top: 4px;
+        .hero-features .check {
+            color: #43A047;
+            font-weight: bold;
         }
 
         /* Features */
         .features {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-label {
-            display: inline-block;
-            background: rgba(25, 118, 210, 0.15);
-            color: var(--secondary);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -0.01em;
-        }
-
-        .section-subtitle {
-            color: var(--gray);
-            font-size: 1.15rem;
-            max-width: 600px;
-            margin: 0 auto;
+            padding: 80px 0;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
         }
 
         .feature-card {
             background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 36px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 280px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 32px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255,255,255,0.15);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: rgba(255,255,255,0.2);
         }
 
         .feature-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 18px;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            margin-bottom: 24px;
-            position: relative;
-            transition: transform 0.3s ease;
+            font-size: 28px;
+            margin-bottom: 20px;
         }
 
-        .feature-icon::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 18px;
-            opacity: 0.3;
-            filter: blur(15px);
-        }
-
-        .feature-icon.red {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        }
-        .feature-icon.red::after { background: var(--primary); }
-
-        .feature-icon.blue {
-            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
-        }
-        .feature-icon.blue::after { background: var(--secondary); }
-
-        .feature-icon.green {
-            background: linear-gradient(135deg, #43A047, #2E7D32);
-        }
-        .feature-icon.green::after { background: #43A047; }
-
-        .feature-icon.navy {
-            background: linear-gradient(135deg, #2c3e50, #1a252f);
-        }
+        .feature-icon.red { background: linear-gradient(135deg, #E53935, #C62828); }
+        .feature-icon.blue { background: linear-gradient(135deg, #1976D2, #0D47A1); }
+        .feature-icon.green { background: linear-gradient(135deg, #43A047, #2E7D32); }
+        .feature-icon.navy { background: linear-gradient(135deg, #2c3e50, #1a252f); }
 
         .feature-card h3 {
-            font-size: 1.35rem;
-            margin-bottom: 14px;
-            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
         }
 
         .feature-card p {
             color: var(--gray);
-            line-height: 1.7;
-            font-size: 1rem;
-            flex-grow: 1;
-        }
-
-        /* How it works */
-        .how-it-works {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .steps-container {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .steps-line {
-            display: none;
-        }
-
-        @media (min-width: 900px) {
-            .steps-line {
-                display: block;
-                position: absolute;
-                top: 50px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60%;
-                height: 2px;
-                background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), var(--accent), transparent);
-            }
-        }
-
-        .step {
-            flex: 1;
-            min-width: 240px;
-            max-width: 320px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .step-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 2px solid var(--card-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .step:hover .step-icon {
-            border-color: var(--primary);
-            box-shadow: 0 0 30px var(--glow);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            font-weight: 700;
-            box-shadow: 0 4px 15px var(--glow);
-        }
-
-        .step-emoji {
-            font-size: 40px;
-        }
-
-        .step h4 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .step p {
-            color: var(--gray);
-            font-size: 1rem;
             line-height: 1.6;
         }
 
         /* Instruments */
         .instruments {
-            padding: 100px 0;
+            padding: 80px 0;
             text-align: center;
         }
 
-        .instruments-scroll {
-            display: flex;
+        .instruments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 48px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .instrument-tag {
+        .instrument-item {
             background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 1rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 20px 12px;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .instrument-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .instrument-emoji {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .instrument-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        /* How it works */
+        .how-it-works {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
         }
 
-        .instrument-tag:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
+        .step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
         }
 
-        .instrument-tag .emoji {
-            font-size: 1.3rem;
+        .step p {
+            color: var(--gray);
         }
 
         /* CTA */
         .cta {
-            padding: 120px 0;
+            padding: 100px 0;
+            text-align: center;
         }
 
         .cta-box {
-            background: linear-gradient(135deg, rgba(229, 57, 53, 0.15), rgba(25, 118, 210, 0.15));
-            border: 1px solid var(--card-border);
-            border-radius: 40px;
-            padding: 80px 48px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(229, 57, 53, 0.1) 0%, transparent 50%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
+            background: linear-gradient(135deg, rgba(229, 57, 53, 0.2), rgba(25, 118, 210, 0.2));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 32px;
+            padding: 60px 40px;
         }
 
         .cta h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 20px;
-            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
         }
 
         .cta p {
             color: var(--gray);
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
         }
 
         /* Footer */
         footer {
-            padding: 60px 0 40px;
-            border-top: 1px solid var(--card-border);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-
-        .footer-brand {
-            max-width: 300px;
-        }
-
-        .footer-brand .logo {
-            margin-bottom: 16px;
-        }
-
-        .footer-brand p {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
             color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.7;
         }
 
-        .footer-links-section h5 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--light);
-        }
-
-        .footer-links-section a {
-            display: block;
+        footer a {
             color: var(--gray);
             text-decoration: none;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
+            margin: 0 16px;
             transition: color 0.2s;
         }
 
-        .footer-links-section a:hover {
+        footer a:hover {
             color: var(--light);
         }
 
-        .footer-bottom {
-            padding-top: 32px;
-            border-top: 1px solid var(--card-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
+        .footer-links {
+            margin-bottom: 20px;
         }
 
-        .footer-bottom p {
-            color: var(--gray);
-            font-size: 0.9rem;
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .footer-legal a {
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-left: 24px;
-            transition: color 0.2s;
-        }
-
-        .footer-legal a:hover {
-            color: var(--light);
-        }
-
-        /* Legal Pages Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            overflow-y: auto;
-            padding: 40px 20px;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .modal-content {
-            background: var(--dark);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            max-width: 800px;
-            width: 100%;
-            padding: 48px;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--light);
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .modal-close:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .modal-content h2 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-
-        .modal-content .last-updated {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 32px;
-        }
-
-        .modal-content h3 {
-            font-size: 1.25rem;
-            margin-top: 32px;
-            margin-bottom: 12px;
-            color: var(--light);
-        }
-
-        .modal-content p, .modal-content li {
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .modal-content ul {
-            padding-left: 24px;
-        }
-
-        .modal-content li {
-            margin-bottom: 8px;
-        }
-
-        /* Tablet */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 0 20px;
-            }
-
-            .hero-stats {
-                gap: 32px;
-            }
-
-            .steps-container {
-                gap: 24px;
-            }
+        .float {
+            animation: float 3s ease-in-out infinite;
         }
 
         /* Mobile */
@@ -873,189 +415,30 @@
             }
 
             .hero {
-                padding: 130px 0 80px;
+                padding: 120px 0 60px;
             }
 
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-                padding: 0 10px;
-            }
-
-            .hero-stats {
-                gap: 24px;
-            }
-
-            .stat-value {
-                font-size: 1.4rem;
-            }
-
-            .stat-label {
-                font-size: 0.8rem;
+            .hero-features {
+                flex-direction: column;
+                gap: 16px;
             }
 
             .store-button {
                 width: 100%;
                 justify-content: center;
-                padding: 14px 24px;
-            }
-
-            .store-button svg {
-                width: 28px;
-                height: 28px;
-            }
-
-            .store-button .big {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-            }
-
-            .features, .how-it-works, .instruments, .cta {
-                padding: 60px 0;
-            }
-
-            .feature-card {
-                padding: 28px;
-                min-height: auto;
-            }
-
-            .feature-icon {
-                width: 56px;
-                height: 56px;
-                font-size: 28px;
-            }
-
-            .feature-card h3 {
-                font-size: 1.2rem;
-            }
-
-            .feature-card p {
-                font-size: 0.95rem;
-            }
-
-            .step-icon {
-                width: 80px;
-                height: 80px;
-            }
-
-            .step-emoji {
-                font-size: 32px;
-            }
-
-            .step-number {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
-            }
-
-            .step h4 {
-                font-size: 1.1rem;
-            }
-
-            .step p {
-                font-size: 0.9rem;
-            }
-
-            .instrument-tag {
-                padding: 10px 18px;
-                font-size: 0.9rem;
-            }
-
-            .instrument-tag .emoji {
-                font-size: 1.1rem;
             }
 
             .cta-box {
-                padding: 48px 24px;
-                border-radius: 24px;
-            }
-
-            .cta h2 {
-                font-size: 1.5rem;
-            }
-
-            .cta p {
-                font-size: 1rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 32px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-legal a {
-                margin: 0 12px;
-            }
-
-            .modal-content {
-                padding: 32px 24px;
-            }
-
-            .modal-content h2 {
-                font-size: 1.5rem;
-            }
-
-            .modal-content h3 {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Small Mobile */
-        @media (max-width: 400px) {
-            .hero h1 {
-                font-size: 1.9rem;
-            }
-
-            .hero-badge {
-                font-size: 0.75rem;
-                padding: 8px 16px;
-            }
-
-            .hero-stats {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .stat-value {
-                font-size: 1.2rem;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .logo-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 18px;
+                padding: 40px 24px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    <div class="bg-grid"></div>
-
     <header>
         <div class="container header-content">
             <a href="/" class="logo">
-                <div class="logo-icon">🎵</div>
+                <img src="https://raw.githubusercontent.com/ProjectProto/TuneSplash/main/public/icon-192.png" alt="TuneSplash">
                 TuneSplash
             </a>
             <a href="#download" class="header-cta">Download Free</a>
@@ -1064,71 +447,44 @@
 
     <main>
         <section class="hero">
-            <div class="hero-glow"></div>
             <div class="container">
-                <div class="hero-badge">
-                    <span>✨</span> 100% Free Forever
-                </div>
-                <h1>
-                    <span class="gradient-text">Turn Your Humming</span><br>
-                    <span class="highlight">Into Real Music</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Hum a melody or draw it with your finger, pick an instrument, and watch it transform into a professional song.
-                    No musical training needed. Just your creativity and imagination.
-                </p>
+                <div class="hero-badge">100% Free • No Ads • No Sign-up</div>
+                <h1>Turn Your Humming<br>Into Real Music</h1>
+                <p>Hum a melody, pick an instrument, and watch it transform into a professional song. No musical training needed. Just your voice and imagination.</p>
 
                 <div class="hero-buttons" id="download">
-                    <a href="https://play.google.com/store/apps/details?id=com.tunesplash.app" class="store-button" target="_blank" rel="noopener">
+                    <a href="https://play.google.com/store/apps/details?id=com.tunesplash.app" class="store-button" target="_blank">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
                         <span>
-                            <span class="small">Get it on</span>
+                            <span class="small">GET IT ON</span>
                             <span class="big">Google Play</span>
                         </span>
                     </a>
                     <a href="#" class="store-button coming-soon" onclick="return false;">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/></svg>
                         <span>
-                            <span class="small">Coming Soon</span>
+                            <span class="small">COMING SOON</span>
                             <span class="big">App Store</span>
                         </span>
                     </a>
                 </div>
 
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-value"><span class="icon">🎹</span> 13</div>
-                        <div class="stat-label">Instruments</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value"><span class="icon">💰</span> $0</div>
-                        <div class="stat-label">Forever Free</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value"><span class="icon">🚫</span> 0</div>
-                        <div class="stat-label">Ads or Sign-ups</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value"><span class="icon">📴</span> Yes</div>
-                        <div class="stat-label">Works Offline</div>
-                    </div>
+                <div class="hero-features">
+                    <span><span class="check">✓</span> Completely Free</span>
+                    <span><span class="check">✓</span> No Account Needed</span>
+                    <span><span class="check">✓</span> Works Offline</span>
+                    <span><span class="check">✓</span> 13 Instruments</span>
                 </div>
             </div>
         </section>
 
-        <section class="features" id="features">
+        <section class="features">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label">Features</span>
-                    <h2 class="section-title">Everything You Need to Create</h2>
-                    <p class="section-subtitle">Four powerful tools to turn your musical ideas into reality</p>
-                </div>
-
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon red">🪄</div>
                         <h3>Melodify</h3>
-                        <p>Hum any melody and instantly transform it into piano, guitar, violin, or any of 13 real instruments. Pure magic at your fingertips.</p>
+                        <p>Hum any melody and transform it into piano, guitar, violin, or any of 13 real instruments. Like magic, but real.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon green">🎤</div>
@@ -1138,7 +494,7 @@
                     <div class="feature-card">
                         <div class="feature-icon blue">✏️</div>
                         <h3>Draw Music</h3>
-                        <p>Can't hum? Just draw! Sketch upward for high notes, downward for low. Your finger becomes a composer's pen.</p>
+                        <p>Can't hum? Just draw! Sketch upward for high notes, downward for low. Your finger becomes a composer.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon navy">🥁</div>
@@ -1149,66 +505,89 @@
             </div>
         </section>
 
-        <section class="how-it-works">
+        <section class="instruments">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label">How It Works</span>
-                    <h2 class="section-title">Create Music in 3 Simple Steps</h2>
-                    <p class="section-subtitle">No experience required. If you can hum, you can compose.</p>
-                </div>
+                <h2 class="section-title">13 Real Instruments</h2>
+                <p class="section-subtitle">Every instrument uses real sampled sounds for authentic playback</p>
 
-                <div class="steps-container">
-                    <div class="steps-line"></div>
-                    <div class="step">
-                        <div class="step-icon">
-                            <span class="step-number">1</span>
-                            <span class="step-emoji">🎤</span>
-                        </div>
-                        <h4>Hum or Draw</h4>
-                        <p>Sing a melody into your phone or draw it with your finger on the screen</p>
+                <div class="instruments-grid">
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127929;</span>
+                        <span class="instrument-name">Piano</span>
                     </div>
-                    <div class="step">
-                        <div class="step-icon">
-                            <span class="step-number">2</span>
-                            <span class="step-emoji">🎸</span>
-                        </div>
-                        <h4>Pick Instrument</h4>
-                        <p>Choose from 13 instruments - piano, guitar, violin, synth, and more</p>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127928;</span>
+                        <span class="instrument-name">Guitar</span>
                     </div>
-                    <div class="step">
-                        <div class="step-icon">
-                            <span class="step-number">3</span>
-                            <span class="step-emoji">🎧</span>
-                        </div>
-                        <h4>Build & Export</h4>
-                        <p>Layer tracks, add drums, record vocals, and export your masterpiece</p>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127931;</span>
+                        <span class="instrument-name">Violin</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127931;</span>
+                        <span class="instrument-name">Cello</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127925;</span>
+                        <span class="instrument-name">Flute</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127927;</span>
+                        <span class="instrument-name">Saxophone</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127930;</span>
+                        <span class="instrument-name">Trumpet</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127925;</span>
+                        <span class="instrument-name">Clarinet</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#129685;</span>
+                        <span class="instrument-name">Harp</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#129345;</span>
+                        <span class="instrument-name">Drums</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127929;</span>
+                        <span class="instrument-name">Organ</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#128266;</span>
+                        <span class="instrument-name">Synth Lead</span>
+                    </div>
+                    <div class="instrument-item">
+                        <span class="instrument-emoji">&#127928;</span>
+                        <span class="instrument-name">Bass Guitar</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="instruments">
+        <section class="how-it-works">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label">Instruments</span>
-                    <h2 class="section-title">13 Professional Instruments</h2>
-                    <p class="section-subtitle">From classical piano to modern synthesizers</p>
-                </div>
+                <h2 class="section-title">Make Music in 3 Steps</h2>
+                <p class="section-subtitle">No experience required. If you can hum, you can compose.</p>
 
-                <div class="instruments-scroll">
-                    <div class="instrument-tag"><span class="emoji">🎹</span> Piano</div>
-                    <div class="instrument-tag"><span class="emoji">🎸</span> Electric Guitar</div>
-                    <div class="instrument-tag"><span class="emoji">🪕</span> Acoustic Guitar</div>
-                    <div class="instrument-tag"><span class="emoji">🎻</span> Violin</div>
-                    <div class="instrument-tag"><span class="emoji">🎷</span> Saxophone</div>
-                    <div class="instrument-tag"><span class="emoji">🎺</span> Trumpet</div>
-                    <div class="instrument-tag"><span class="emoji">🪈</span> Flute</div>
-                    <div class="instrument-tag"><span class="emoji">🪗</span> Organ</div>
-                    <div class="instrument-tag"><span class="emoji">🎵</span> Synth Lead</div>
-                    <div class="instrument-tag"><span class="emoji">🔊</span> Synth Pad</div>
-                    <div class="instrument-tag"><span class="emoji">🎶</span> Music Box</div>
-                    <div class="instrument-tag"><span class="emoji">🔔</span> Vibraphone</div>
-                    <div class="instrument-tag"><span class="emoji">🪘</span> Marimba</div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Hum or Draw</h4>
+                        <p>Sing a melody into your phone or draw it with your finger</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Pick Instrument</h4>
+                        <p>Choose from 13 instruments - piano, guitar, violin, and more</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Build Your Song</h4>
+                        <p>Layer tracks, add drums, record vocals, and export</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1216,18 +595,16 @@
         <section class="cta">
             <div class="container">
                 <div class="cta-box">
-                    <div class="cta-content">
-                        <h2>Your Next Song Is Already in Your Head</h2>
-                        <p>Download TuneSplash and bring it to life. Free forever, no strings attached.</p>
-                        <div class="hero-buttons">
-                            <a href="https://play.google.com/store/apps/details?id=com.tunesplash.app" class="store-button" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                                <span>
-                                    <span class="small">Get it on</span>
-                                    <span class="big">Google Play</span>
-                                </span>
-                            </a>
-                        </div>
+                    <h2>Your Next Song Is Already in Your Head</h2>
+                    <p>Download TuneSplash and bring it to life. Free forever.</p>
+                    <div class="hero-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.tunesplash.app" class="store-button" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                            <span>
+                                <span class="small">GET IT ON</span>
+                                <span class="big">Google Play</span>
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1236,189 +613,12 @@
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="/" class="logo">
-                        <div class="logo-icon">🎵</div>
-                        TuneSplash
-                    </a>
-                    <p>Turn your musical ideas into reality. Hum, draw, or tap - and watch your creativity come to life.</p>
-                </div>
-                <div class="footer-links-section">
-                    <h5>Download</h5>
-                    <a href="https://play.google.com/store/apps/details?id=com.tunesplash.app" target="_blank" rel="noopener">Google Play</a>
-                    <a href="#" onclick="return false;">App Store (Soon)</a>
-                </div>
-                <div class="footer-links-section">
-                    <h5>Legal</h5>
-                    <a href="#" onclick="openModal('privacy'); return false;">Privacy Policy</a>
-                    <a href="#" onclick="openModal('terms'); return false;">Terms of Service</a>
-                </div>
-                <div class="footer-links-section">
-                    <h5>Contact</h5>
-                    <a href="mailto:hello@tunesplash.io">hello@tunesplash.io</a>
-                </div>
+            <div class="footer-links">
+                <a href="mailto:hello@tunesplash.io">Contact</a>
+                <a href="/privacy">Privacy Policy</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 TuneSplash. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#" onclick="openModal('privacy'); return false;">Privacy</a>
-                    <a href="#" onclick="openModal('terms'); return false;">Terms</a>
-                </div>
-            </div>
+            <p>&copy; 2026 TuneSplash. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- Privacy Policy Modal -->
-    <div id="privacy-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('privacy')">&times;</button>
-            <h2>Privacy Policy</h2>
-            <p class="last-updated">Last updated: January 25, 2026</p>
-
-            <h3>Introduction</h3>
-            <p>TuneSplash ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our mobile application.</p>
-
-            <h3>Information We Collect</h3>
-            <p><strong>We do not collect any personal information.</strong> TuneSplash is designed with privacy in mind:</p>
-            <ul>
-                <li>No account creation required</li>
-                <li>No personal data collection</li>
-                <li>No tracking or analytics</li>
-                <li>No advertisements</li>
-                <li>All data stays on your device</li>
-            </ul>
-
-            <h3>Audio Recordings</h3>
-            <p>TuneSplash requires microphone access to enable the Melodify and Vocal Recording features. All audio recordings are:</p>
-            <ul>
-                <li>Processed entirely on your device</li>
-                <li>Never uploaded to any server</li>
-                <li>Never shared with third parties</li>
-                <li>Stored only locally on your device</li>
-            </ul>
-
-            <h3>Data Storage</h3>
-            <p>All your songs, recordings, and settings are stored locally on your device. We do not have access to this data. If you uninstall the app, this local data will be deleted.</p>
-
-            <h3>Third-Party Services</h3>
-            <p>TuneSplash does not integrate with any third-party analytics, advertising, or tracking services.</p>
-
-            <h3>Children's Privacy</h3>
-            <p>TuneSplash is suitable for all ages. We do not knowingly collect any information from anyone, including children under 13.</p>
-
-            <h3>Changes to This Policy</h3>
-            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
-
-            <h3>Contact Us</h3>
-            <p>If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:hello@tunesplash.io" style="color: var(--primary);">hello@tunesplash.io</a></p>
-        </div>
-    </div>
-
-    <!-- Terms of Service Modal -->
-    <div id="terms-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('terms')">&times;</button>
-            <h2>Terms of Service</h2>
-            <p class="last-updated">Last updated: January 25, 2026</p>
-
-            <h3>1. Acceptance of Terms</h3>
-            <p>By downloading, installing, or using TuneSplash ("the App"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you must not download, install, or use the App. Your use of the App constitutes your acceptance of these Terms and any future modifications.</p>
-
-            <h3>2. Use at Your Own Risk</h3>
-            <p><strong>THE APP IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. YOU EXPRESSLY AGREE THAT YOUR USE OF THE APP IS AT YOUR SOLE RISK.</strong> TuneSplash makes no representations or warranties of any kind, express or implied, regarding the App's operation, accuracy, reliability, or suitability for any particular purpose. We do not warrant that the App will meet your requirements, be uninterrupted, timely, secure, or error-free.</p>
-
-            <h3>3. Description of Service</h3>
-            <p>TuneSplash is a free music creation application that allows users to create music by humming melodies, drawing notes, recording vocals, and creating drum patterns. The App transforms these inputs into playable music using various virtual instruments.</p>
-
-            <h3>4. User Content and Intellectual Property Compliance</h3>
-            <p><strong>Your Content:</strong> You retain full ownership of all original music and recordings you create using TuneSplash. However, you are solely responsible for ensuring that your use of the App and any content you create, distribute, or share does not infringe upon the intellectual property rights of any third party.</p>
-            <p><strong>Third-Party Rights:</strong> You agree NOT to use TuneSplash to:</p>
-            <ul>
-                <li>Reproduce, sample, or recreate copyrighted music, melodies, or compositions owned by others without proper authorization</li>
-                <li>Create content that infringes upon any copyright, trademark, patent, trade secret, or other proprietary rights of any third party</li>
-                <li>Distribute, sell, or commercially exploit any content that violates intellectual property laws</li>
-                <li>Claim ownership of music or melodies that belong to others</li>
-            </ul>
-            <p><strong>You acknowledge and agree that TuneSplash bears no responsibility for any intellectual property infringement committed by users.</strong> Any legal consequences arising from your infringement of third-party intellectual property rights are solely your responsibility.</p>
-
-            <h3>5. Indemnification</h3>
-            <p>You agree to indemnify, defend, and hold harmless TuneSplash, its affiliates, officers, directors, employees, agents, and licensors from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) your use or misuse of the App; (b) your violation of these Terms; (c) your violation of any rights of any third party, including intellectual property rights; (d) any content you create, upload, or share using the App; or (e) any claim that your content caused damage to a third party.</p>
-
-            <h3>6. License to Use</h3>
-            <p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable, non-sublicensable license to download, install, and use TuneSplash on devices you own or control, solely for personal or commercial music creation purposes.</p>
-
-            <h3>7. Restrictions</h3>
-            <p>You agree not to:</p>
-            <ul>
-                <li>Reverse engineer, decompile, disassemble, or attempt to derive the source code of the App</li>
-                <li>Modify, adapt, translate, or create derivative works based on the App</li>
-                <li>Use the App for any unlawful, fraudulent, or malicious purpose</li>
-                <li>Distribute, sublicense, lease, rent, or transfer the App or your rights to any third party</li>
-                <li>Remove, alter, or obscure any proprietary notices in the App</li>
-                <li>Use the App in any manner that could damage, disable, or impair its functionality</li>
-            </ul>
-
-            <h3>8. Intellectual Property of TuneSplash</h3>
-            <p>The App and its original content, features, functionality, design, and underlying technology are owned by TuneSplash and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws. Nothing in these Terms grants you any right to use TuneSplash's name, logo, or trademarks.</p>
-
-            <h3>9. Disclaimer of Warranties</h3>
-            <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, TUNESPLASH EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. TUNESPLASH DOES NOT WARRANT THAT THE APP WILL FUNCTION WITHOUT INTERRUPTION OR ERRORS, THAT DEFECTS WILL BE CORRECTED, OR THAT THE APP IS FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.</p>
-
-            <h3>10. Limitation of Liability</h3>
-            <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL TUNESPLASH, ITS AFFILIATES, DIRECTORS, OFFICERS, EMPLOYEES, AGENTS, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA, OR OTHER INTANGIBLE LOSSES, REGARDLESS OF WHETHER SUCH DAMAGES WERE FORESEEABLE OR WHETHER TUNESPLASH WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO EVENT SHALL TUNESPLASH'S TOTAL LIABILITY TO YOU EXCEED THE AMOUNT YOU PAID TO TUNESPLASH (IF ANY) FOR USE OF THE APP IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM.</p>
-
-            <h3>11. No Professional Advice</h3>
-            <p>The App is a creative tool and does not provide legal, financial, or professional advice. Any decisions you make based on your use of the App are made at your own risk and discretion.</p>
-
-            <h3>12. Changes to Terms</h3>
-            <p>We reserve the right to modify, amend, or update these Terms at any time in our sole discretion. Changes will be effective immediately upon posting the updated Terms. Your continued use of the App after any changes constitutes your acceptance of the revised Terms. It is your responsibility to review these Terms periodically.</p>
-
-            <h3>13. Termination</h3>
-            <p>We may terminate or suspend your access to the App immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach these Terms. Upon termination, your right to use the App will cease immediately.</p>
-
-            <h3>14. Severability</h3>
-            <p>If any provision of these Terms is held to be invalid, illegal, or unenforceable, such provision shall be modified to the minimum extent necessary to make it valid and enforceable, or if modification is not possible, shall be severed from these Terms. The invalidity of any provision shall not affect the validity of the remaining provisions.</p>
-
-            <h3>15. Entire Agreement</h3>
-            <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and TuneSplash regarding your use of the App and supersede all prior agreements and understandings.</p>
-
-            <h3>16. Governing Law and Dispute Resolution</h3>
-            <p>These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law principles. Any disputes arising from these Terms or your use of the App shall be resolved through binding arbitration or in the courts of competent jurisdiction, at TuneSplash's sole discretion.</p>
-
-            <h3>17. Contact</h3>
-            <p>For questions about these Terms, please contact us at: <a href="mailto:hello@tunesplash.io" style="color: var(--primary);">hello@tunesplash.io</a></p>
-        </div>
-    </div>
-
-    <script>
-        function openModal(type) {
-            document.getElementById(type + '-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(type) {
-            document.getElementById(type + '-modal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Close modal on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal('privacy');
-                closeModal('terms');
-            }
-        });
-
-        // Close modal when clicking outside
-        document.querySelectorAll('.modal-overlay').forEach(function(modal) {
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    closeModal('privacy');
-                    closeModal('terms');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
