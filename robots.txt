@@ -1,0 +1,9 @@
+# TuneSplash Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tunesplash.io/sitemap.xml
+
+# Crawl-delay (optional, be nice to crawlers)
+Crawl-delay: 1
