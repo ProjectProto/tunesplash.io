@@ -441,14 +441,14 @@
             }
         }
 
-        /* Splash Container */
+        /* Splash Container - in front of background, around content */
         .splash-container {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            z-index: -4;
+            z-index: 1;
             pointer-events: none;
             overflow: hidden;
         }
@@ -576,7 +576,12 @@
             pointer-events: none;
             text-shadow: 0 0 15px rgba(0, 212, 170, 0.6), 0 0 30px rgba(155, 89, 182, 0.4);
             transition: transform 0.1s ease-out;
-            z-index: -4;
+            z-index: 1;
+        }
+
+        /* Music notes container in front */
+        .music-notes {
+            z-index: 1 !important;
         }
 
         .container {
@@ -2051,28 +2056,48 @@
             }, 2000);
         }
 
-        // Spawn a collision pair - two notes from sides that meet in hero section
+        // Spawn a collision pair - two notes from sides that meet AROUND the hero text
         function spawnCollisionPair() {
-            // Collision point in hero section (upper portion of screen)
-            const collisionX = 150 + Math.random() * (window.innerWidth - 300);
-            const collisionY = 250 + Math.random() * 200; // Hero area: 250-450px from top
+            const screenW = window.innerWidth;
+            const centerX = screenW / 2;
+
+            // Collision zones AROUND the hero text (sides, above badge, below buttons)
+            const zones = [
+                // Left side of text
+                { x: centerX - 350 - Math.random() * 100, y: 280 + Math.random() * 150 },
+                // Right side of text
+                { x: centerX + 350 + Math.random() * 100, y: 280 + Math.random() * 150 },
+                // Above the badge
+                { x: centerX - 150 + Math.random() * 300, y: 140 + Math.random() * 40 },
+                // Below the buttons, above stats
+                { x: centerX - 200 + Math.random() * 400, y: 520 + Math.random() * 60 },
+                // Far left
+                { x: 80 + Math.random() * 100, y: 200 + Math.random() * 300 },
+                // Far right
+                { x: screenW - 80 - Math.random() * 100, y: 200 + Math.random() * 300 },
+            ];
+
+            // Pick a random zone
+            const zone = zones[Math.floor(Math.random() * zones.length)];
+            const collisionX = Math.max(80, Math.min(screenW - 80, zone.x));
+            const collisionY = zone.y;
 
             // Note 1: comes from LEFT side
             const note1 = new FloatingNote();
             note1.x = -30;
-            note1.y = collisionY + (Math.random() - 0.5) * 100;
-            note1.speedX = 2.5 + Math.random(); // Move right
+            note1.y = collisionY + (Math.random() - 0.5) * 60;
+            note1.speedX = 3 + Math.random() * 1.5; // Move right
             note1.speedY = (collisionY - note1.y) / ((collisionX - note1.x) / note1.speedX);
-            note1.element.style.opacity = '0.8';
+            note1.element.style.opacity = '0.85';
             floatingNotes.push(note1);
 
             // Note 2: comes from RIGHT side
             const note2 = new FloatingNote();
             note2.x = window.innerWidth + 30;
-            note2.y = collisionY + (Math.random() - 0.5) * 100;
-            note2.speedX = -(2.5 + Math.random()); // Move left
+            note2.y = collisionY + (Math.random() - 0.5) * 60;
+            note2.speedX = -(3 + Math.random() * 1.5); // Move left
             note2.speedY = (collisionY - note2.y) / ((collisionX - note2.x) / note2.speedX);
-            note2.element.style.opacity = '0.8';
+            note2.element.style.opacity = '0.85';
             floatingNotes.push(note2);
         }
 
