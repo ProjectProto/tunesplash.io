@@ -21,7 +21,7 @@
     <meta name="author" content="TuneSplash">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
-    <meta name="theme-color" content="#1a1a2e">
+    <meta name="theme-color" content="#0a0a1a">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://tunesplash.io/">
@@ -80,7 +80,7 @@
             "Mobile-friendly touch interface"
         ],
         "screenshot": "https://tunesplash.io/og-image.png",
-        "softwareVersion": "1.14.0",
+        "softwareVersion": "1.15.0",
         "author": {
             "@type": "Organization",
             "name": "TuneSplash",
@@ -109,19 +109,19 @@
         }
 
         :root {
-            --primary: #E53935;
-            --primary-dark: #C62828;
-            --secondary: #1976D2;
-            --secondary-dark: #0D47A1;
-            --accent: #43A047;
-            --dark: #1a1a2e;
-            --darker: #0f0f1a;
+            --aurora-cyan: #00d4aa;
+            --aurora-teal: #20b2aa;
+            --aurora-purple: #9b59b6;
+            --aurora-pink: #e91e8c;
+            --aurora-blue: #667eea;
+            --aurora-green: #11998e;
+            --dark: #0a0a1a;
+            --darker: #050510;
             --light: #ffffff;
-            --gray: #9ca3af;
-            --gray-light: #e5e7eb;
+            --gray: #a0aec0;
+            --gray-light: #e2e8f0;
             --card-bg: rgba(255,255,255,0.03);
             --card-border: rgba(255,255,255,0.08);
-            --glow: rgba(229, 57, 53, 0.4);
         }
 
         html {
@@ -137,32 +137,287 @@
             line-height: 1.6;
         }
 
-        /* Animated Background */
-        .bg-animation {
+        /* Aurora Background */
+        .aurora-bg {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            z-index: -1;
-            background:
-                radial-gradient(ellipse at 20% 20%, rgba(229, 57, 53, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(25, 118, 210, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(67, 160, 71, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
+            z-index: -3;
+            background: linear-gradient(180deg, #050510 0%, #0a0a1a 30%, #0d1b2a 60%, #1a1a2e 100%);
         }
 
-        .bg-grid {
+        /* Aurora Light Bands */
+        .aurora-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .aurora-band {
+            position: absolute;
+            width: 200%;
+            left: -50%;
+            height: 40%;
+            filter: blur(60px);
+            opacity: 0.6;
+            mix-blend-mode: screen;
+        }
+
+        .aurora-band-1 {
+            bottom: 10%;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(0, 212, 170, 0.4) 20%,
+                rgba(32, 178, 170, 0.5) 35%,
+                rgba(102, 126, 234, 0.4) 50%,
+                rgba(155, 89, 182, 0.5) 65%,
+                rgba(0, 212, 170, 0.3) 80%,
+                transparent 100%);
+            animation: auroraBand1 12s ease-in-out infinite;
+        }
+
+        .aurora-band-2 {
+            bottom: 25%;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(155, 89, 182, 0.3) 15%,
+                rgba(233, 30, 140, 0.4) 30%,
+                rgba(102, 126, 234, 0.5) 50%,
+                rgba(0, 212, 170, 0.4) 70%,
+                rgba(155, 89, 182, 0.3) 85%,
+                transparent 100%);
+            animation: auroraBand2 15s ease-in-out infinite;
+            animation-delay: -3s;
+        }
+
+        .aurora-band-3 {
+            bottom: 40%;
+            height: 30%;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(102, 126, 234, 0.3) 25%,
+                rgba(0, 212, 170, 0.4) 45%,
+                rgba(32, 178, 170, 0.3) 55%,
+                rgba(155, 89, 182, 0.4) 75%,
+                transparent 100%);
+            animation: auroraBand3 18s ease-in-out infinite;
+            animation-delay: -6s;
+            opacity: 0.4;
+        }
+
+        @keyframes auroraBand1 {
+            0%, 100% {
+                transform: translateX(-10%) skewY(-2deg) scaleY(1);
+                opacity: 0.5;
+            }
+            25% {
+                transform: translateX(5%) skewY(1deg) scaleY(1.2);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateX(10%) skewY(2deg) scaleY(0.9);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translateX(-5%) skewY(-1deg) scaleY(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes auroraBand2 {
+            0%, 100% {
+                transform: translateX(10%) skewY(1deg) scaleY(1);
+                opacity: 0.4;
+            }
+            33% {
+                transform: translateX(-8%) skewY(-2deg) scaleY(1.3);
+                opacity: 0.6;
+            }
+            66% {
+                transform: translateX(5%) skewY(1deg) scaleY(0.8);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes auroraBand3 {
+            0%, 100% {
+                transform: translateX(-5%) skewY(-1deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateX(8%) skewY(2deg);
+                opacity: 0.5;
+            }
+        }
+
+        /* Vertical aurora streaks */
+        .aurora-streaks {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .aurora-streak {
+            position: absolute;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to top,
+                rgba(0, 212, 170, 0.8) 0%,
+                rgba(102, 126, 234, 0.6) 30%,
+                rgba(155, 89, 182, 0.4) 60%,
+                transparent 100%);
+            filter: blur(2px);
+            animation: streakRise 8s ease-out infinite;
+        }
+
+        .aurora-streak:nth-child(1) { left: 10%; height: 50%; animation-delay: 0s; }
+        .aurora-streak:nth-child(2) { left: 20%; height: 60%; animation-delay: 1.5s; }
+        .aurora-streak:nth-child(3) { left: 35%; height: 45%; animation-delay: 3s; }
+        .aurora-streak:nth-child(4) { left: 50%; height: 55%; animation-delay: 0.8s; }
+        .aurora-streak:nth-child(5) { left: 65%; height: 50%; animation-delay: 2.2s; }
+        .aurora-streak:nth-child(6) { left: 80%; height: 65%; animation-delay: 4s; }
+        .aurora-streak:nth-child(7) { left: 90%; height: 40%; animation-delay: 1s; }
+
+        @keyframes streakRise {
+            0% {
+                opacity: 0;
+                transform: scaleY(0.3) translateY(20%);
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: scaleY(1.2) translateY(-10%);
+            }
+        }
+
+        /* Floating Music Notes - dancing on aurora */
+        .music-notes {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             z-index: -1;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+            text-shadow: 0 0 20px rgba(0, 212, 170, 0.8), 0 0 40px rgba(155, 89, 182, 0.5);
+            animation: floatNoteDance 14s ease-in-out infinite;
+        }
+
+        .note:nth-child(1) { left: 8%; animation-delay: 0s; font-size: 22px; color: #00d4aa; }
+        .note:nth-child(2) { left: 18%; animation-delay: 2.5s; font-size: 30px; color: #9b59b6; }
+        .note:nth-child(3) { left: 28%; animation-delay: 5s; font-size: 20px; color: #667eea; }
+        .note:nth-child(4) { left: 38%; animation-delay: 1.2s; font-size: 26px; color: #00d4aa; }
+        .note:nth-child(5) { left: 48%; animation-delay: 3.8s; font-size: 24px; color: #e91e8c; }
+        .note:nth-child(6) { left: 58%; animation-delay: 6.5s; font-size: 28px; color: #20b2aa; }
+        .note:nth-child(7) { left: 68%; animation-delay: 2s; font-size: 22px; color: #9b59b6; }
+        .note:nth-child(8) { left: 78%; animation-delay: 4.8s; font-size: 26px; color: #667eea; }
+        .note:nth-child(9) { left: 88%; animation-delay: 1.8s; font-size: 20px; color: #00d4aa; }
+        .note:nth-child(10) { left: 95%; animation-delay: 4s; font-size: 24px; color: #e91e8c; }
+
+        @keyframes floatNoteDance {
+            0% {
+                bottom: -60px;
+                opacity: 0;
+                transform: translateX(0) rotate(-10deg) scale(0.8);
+            }
+            5% {
+                opacity: 0.9;
+                transform: translateX(5px) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateX(-15px) rotate(10deg) scale(1.1);
+            }
+            50% {
+                transform: translateX(20px) rotate(-5deg) scale(0.95);
+            }
+            75% {
+                transform: translateX(-10px) rotate(15deg) scale(1.05);
+            }
+            95% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 105%;
+                opacity: 0;
+                transform: translateX(15px) rotate(20deg) scale(0.9);
+            }
+        }
+
+        /* Stars/Particles */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 4s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.7; transform: scale(1); }
+        }
+
+        /* Reduce animations on mobile for performance */
+        @media (max-width: 768px) {
+            .aurora-band {
+                filter: blur(40px);
+            }
+            .aurora-streak {
+                display: none;
+            }
+            .note {
+                font-size: 18px !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .aurora-band,
+            .aurora-streak,
+            .note,
+            .star {
+                animation: none !important;
+            }
+            .aurora-band {
+                opacity: 0.4;
+            }
+            .note {
+                opacity: 0.5;
+                bottom: 50%;
+            }
         }
 
         .container {
@@ -179,7 +434,7 @@
             left: 0;
             right: 0;
             z-index: 100;
-            background: rgba(15, 15, 26, 0.8);
+            background: rgba(10, 10, 26, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--card-border);
         }
@@ -204,29 +459,29 @@
             width: 42px;
             height: 42px;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--aurora-cyan), var(--aurora-purple));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 22px;
-            box-shadow: 0 4px 15px var(--glow);
+            box-shadow: 0 4px 20px rgba(0, 212, 170, 0.3);
         }
 
         .header-cta {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
+            background: linear-gradient(135deg, var(--aurora-cyan), var(--aurora-teal));
+            color: var(--darker);
             padding: 12px 28px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px var(--glow);
+            box-shadow: 0 4px 20px rgba(0, 212, 170, 0.3);
         }
 
         .header-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px var(--glow);
+            box-shadow: 0 8px 30px rgba(0, 212, 170, 0.4);
         }
 
         /* Hero */
@@ -241,31 +496,37 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
+            width: 800px;
             height: 600px;
-            background: radial-gradient(circle, rgba(229, 57, 53, 0.2) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(0, 212, 170, 0.15) 0%, rgba(155, 89, 182, 0.1) 40%, transparent 70%);
             filter: blur(60px);
             pointer-events: none;
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(229, 57, 53, 0.15);
-            color: #ff6b6b;
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.15), rgba(155, 89, 182, 0.15));
+            color: var(--aurora-cyan);
             padding: 10px 24px;
             border-radius: 50px;
             font-size: 0.875rem;
             font-weight: 600;
             margin-bottom: 32px;
-            border: 1px solid rgba(229, 57, 53, 0.3);
-            animation: pulse 2s ease-in-out infinite;
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            animation: badgeGlow 3s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 170, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(0, 212, 170, 0.4); }
         }
 
         .hero h1 {
@@ -277,17 +538,24 @@
         }
 
         .hero h1 .gradient-text {
-            background: linear-gradient(135deg, #fff 0%, #fff 40%, var(--primary) 100%);
+            background: linear-gradient(135deg, #fff 0%, #e0e7ff 50%, var(--aurora-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--primary), #ff6b6b);
+            background: linear-gradient(135deg, var(--aurora-cyan), var(--aurora-purple), var(--aurora-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero-subtitle {
@@ -322,7 +590,7 @@
 
         .store-button:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 50px rgba(0, 212, 170, 0.3);
         }
 
         .store-button svg {
@@ -349,10 +617,10 @@
         }
 
         .store-button.coming-soon {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
             color: var(--gray);
             cursor: default;
-            border: 2px solid var(--card-border);
+            border: 1px solid var(--card-border);
         }
 
         .store-button.coming-soon:hover {
@@ -369,10 +637,22 @@
 
         .stat {
             text-align: center;
+            padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.1);
         }
 
         .stat-value {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--light);
             display: flex;
@@ -382,11 +662,11 @@
         }
 
         .stat-value .icon {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--gray);
             margin-top: 4px;
         }
@@ -404,8 +684,8 @@
 
         .section-label {
             display: inline-block;
-            background: rgba(25, 118, 210, 0.15);
-            color: var(--secondary);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(155, 89, 182, 0.2));
+            color: var(--aurora-blue);
             padding: 8px 20px;
             border-radius: 50px;
             font-size: 0.85rem;
@@ -413,6 +693,7 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
         }
 
         .section-title {
@@ -457,19 +738,11 @@
             min-height: 280px;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.6s ease forwards;
         }
 
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .feature-card::before {
@@ -479,15 +752,15 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--aurora-cyan), var(--aurora-purple));
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(255,255,255,0.15);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border-color: rgba(0, 212, 170, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 212, 170, 0.1);
         }
 
         .feature-card:hover::before {
@@ -520,24 +793,25 @@
             filter: blur(15px);
         }
 
-        .feature-icon.red {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        .feature-icon.cyan {
+            background: linear-gradient(135deg, var(--aurora-cyan), var(--aurora-teal));
         }
-        .feature-icon.red::after { background: var(--primary); }
+        .feature-icon.cyan::after { background: var(--aurora-cyan); }
+
+        .feature-icon.purple {
+            background: linear-gradient(135deg, var(--aurora-purple), #8e44ad);
+        }
+        .feature-icon.purple::after { background: var(--aurora-purple); }
 
         .feature-icon.blue {
-            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            background: linear-gradient(135deg, var(--aurora-blue), #5a67d8);
         }
-        .feature-icon.blue::after { background: var(--secondary); }
+        .feature-icon.blue::after { background: var(--aurora-blue); }
 
-        .feature-icon.green {
-            background: linear-gradient(135deg, #43A047, #2E7D32);
+        .feature-icon.pink {
+            background: linear-gradient(135deg, var(--aurora-pink), #d63384);
         }
-        .feature-icon.green::after { background: #43A047; }
-
-        .feature-icon.navy {
-            background: linear-gradient(135deg, #2c3e50, #1a252f);
-        }
+        .feature-icon.pink::after { background: var(--aurora-pink); }
 
         .feature-card h3 {
             font-size: 1.35rem;
@@ -579,7 +853,7 @@
                 transform: translateX(-50%);
                 width: 60%;
                 height: 2px;
-                background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), var(--accent), transparent);
+                background: linear-gradient(90deg, transparent, var(--aurora-cyan), var(--aurora-purple), var(--aurora-pink), transparent);
             }
         }
 
@@ -607,8 +881,8 @@
         }
 
         .step:hover .step-icon {
-            border-color: var(--primary);
-            box-shadow: 0 0 30px var(--glow);
+            border-color: var(--aurora-cyan);
+            box-shadow: 0 0 40px rgba(0, 212, 170, 0.3);
         }
 
         .step-number {
@@ -618,13 +892,13 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--aurora-cyan), var(--aurora-purple));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1rem;
             font-weight: 700;
-            box-shadow: 0 4px 15px var(--glow);
+            box-shadow: 0 4px 20px rgba(0, 212, 170, 0.4);
         }
 
         .step-emoji {
@@ -670,9 +944,10 @@
         }
 
         .instrument-tag:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.2);
+            background: rgba(0, 212, 170, 0.1);
+            border-color: rgba(0, 212, 170, 0.3);
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 170, 0.15);
         }
 
         .instrument-tag .emoji {
@@ -685,7 +960,7 @@
         }
 
         .cta-box {
-            background: linear-gradient(135deg, rgba(229, 57, 53, 0.15), rgba(25, 118, 210, 0.15));
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(155, 89, 182, 0.1));
             border: 1px solid var(--card-border);
             border-radius: 40px;
             padding: 80px 48px;
@@ -701,11 +976,11 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(229, 57, 53, 0.1) 0%, transparent 50%);
-            animation: rotate 20s linear infinite;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.08) 0%, transparent 50%);
+            animation: rotateSlow 30s linear infinite;
         }
 
-        @keyframes rotate {
+        @keyframes rotateSlow {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
@@ -776,7 +1051,7 @@
         }
 
         .footer-links-section a:hover {
-            color: var(--light);
+            color: var(--aurora-cyan);
         }
 
         .footer-bottom {
@@ -803,7 +1078,7 @@
         }
 
         .footer-legal a:hover {
-            color: var(--light);
+            color: var(--aurora-cyan);
         }
 
         /* Legal Pages Modal */
@@ -814,7 +1089,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             backdrop-filter: blur(10px);
             z-index: 1000;
             overflow-y: auto;
@@ -856,8 +1131,9 @@
         }
 
         .modal-close:hover {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: var(--aurora-cyan);
+            border-color: var(--aurora-cyan);
+            color: var(--darker);
         }
 
         .modal-content h2 {
@@ -892,22 +1168,26 @@
             margin-bottom: 8px;
         }
 
-        /* Tablet */
+        .modal-content a {
+            color: var(--aurora-cyan);
+        }
+
+        /* Responsive */
         @media (max-width: 1024px) {
             .container {
                 padding: 0 20px;
             }
 
             .hero-stats {
-                gap: 32px;
+                gap: 16px;
             }
 
-            .steps-container {
-                gap: 24px;
+            .stat {
+                min-width: 100px;
+                padding: 16px;
             }
         }
 
-        /* Mobile */
         @media (max-width: 768px) {
             .header-cta {
                 display: none;
@@ -927,15 +1207,20 @@
             }
 
             .hero-stats {
-                gap: 24px;
+                gap: 12px;
+            }
+
+            .stat {
+                min-width: 80px;
+                padding: 12px;
             }
 
             .stat-value {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
 
             .stat-label {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
 
             .store-button {
@@ -1056,7 +1341,6 @@
             }
         }
 
-        /* Small Mobile */
         @media (max-width: 400px) {
             .hero h1 {
                 font-size: 1.9rem;
@@ -1070,11 +1354,7 @@
             .hero-stats {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .stat-value {
-                font-size: 1.2rem;
+                gap: 12px;
             }
 
             .logo {
@@ -1090,13 +1370,45 @@
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    <div class="bg-grid"></div>
+    <div class="aurora-bg"></div>
+
+    <!-- Animated Aurora Lights -->
+    <div class="aurora-container">
+        <div class="aurora-band aurora-band-1"></div>
+        <div class="aurora-band aurora-band-2"></div>
+        <div class="aurora-band aurora-band-3"></div>
+        <div class="aurora-streaks">
+            <div class="aurora-streak"></div>
+            <div class="aurora-streak"></div>
+            <div class="aurora-streak"></div>
+            <div class="aurora-streak"></div>
+            <div class="aurora-streak"></div>
+            <div class="aurora-streak"></div>
+            <div class="aurora-streak"></div>
+        </div>
+    </div>
+
+    <!-- Floating Music Notes - dancing on aurora -->
+    <div class="music-notes">
+        <span class="note">&#9834;</span>
+        <span class="note">&#9835;</span>
+        <span class="note">&#9833;</span>
+        <span class="note">&#9839;</span>
+        <span class="note">&#9834;</span>
+        <span class="note">&#9835;</span>
+        <span class="note">&#9833;</span>
+        <span class="note">&#9834;</span>
+        <span class="note">&#9835;</span>
+        <span class="note">&#9839;</span>
+    </div>
+
+    <!-- Twinkling Stars -->
+    <div class="stars" id="stars"></div>
 
     <header>
         <div class="container header-content">
             <a href="/" class="logo">
-                <div class="logo-icon">🎵</div>
+                <div class="logo-icon">&#9835;</div>
                 TuneSplash
             </a>
             <a href="https://play.google.com/store/apps/details?id=com.tunesplash.app" class="header-cta" target="_blank" rel="noopener">Download Free</a>
@@ -1108,7 +1420,7 @@
             <div class="hero-glow"></div>
             <div class="container">
                 <div class="hero-badge">
-                    <span>✨</span> 100% Free Forever
+                    <span>&#10024;</span> 100% Free Forever
                 </div>
                 <h1>
                     <span class="gradient-text">Turn Your Humming</span><br>
@@ -1138,19 +1450,19 @@
 
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-value"><span class="icon">🎹</span> 13</div>
+                        <div class="stat-value"><span class="icon">&#127929;</span> 13</div>
                         <div class="stat-label">Instruments</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-value"><span class="icon">💰</span> $0</div>
+                        <div class="stat-value"><span class="icon">&#128176;</span> $0</div>
                         <div class="stat-label">Forever Free</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-value"><span class="icon">🚫</span> 0</div>
+                        <div class="stat-value"><span class="icon">&#128683;</span> 0</div>
                         <div class="stat-label">Ads or Sign-ups</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-value"><span class="icon">📴</span> Yes</div>
+                        <div class="stat-value"><span class="icon">&#128247;</span> Yes</div>
                         <div class="stat-label">Works Offline</div>
                     </div>
                 </div>
@@ -1167,22 +1479,22 @@
 
                 <div class="features-grid">
                     <div class="feature-card">
-                        <div class="feature-icon red">🪄</div>
+                        <div class="feature-icon cyan">&#129668;</div>
                         <h3>Melodify</h3>
                         <p>Hum any melody and instantly transform it into piano, guitar, violin, or any of 13 real instruments. Pure magic at your fingertips.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon green">🎤</div>
+                        <div class="feature-icon purple">&#127908;</div>
                         <h3>Record Vocals</h3>
                         <p>Sing, rap, or beatbox. Record your actual voice and layer it with your instrumentals to create complete songs.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon blue">✏️</div>
+                        <div class="feature-icon blue">&#9999;&#65039;</div>
                         <h3>Draw Music</h3>
                         <p>Can't hum? Just draw! Sketch upward for high notes, downward for low. Your finger becomes a composer's pen.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon navy">🥁</div>
+                        <div class="feature-icon pink">&#129345;</div>
                         <h3>Drum Machine</h3>
                         <p>Tap out beats on an intuitive grid. Kick, snare, hi-hat, claps - create professional drum patterns in seconds.</p>
                     </div>
@@ -1203,7 +1515,7 @@
                     <div class="step">
                         <div class="step-icon">
                             <span class="step-number">1</span>
-                            <span class="step-emoji">🎤</span>
+                            <span class="step-emoji">&#127908;</span>
                         </div>
                         <h4>Hum or Draw</h4>
                         <p>Sing a melody into your phone or draw it with your finger on the screen</p>
@@ -1211,7 +1523,7 @@
                     <div class="step">
                         <div class="step-icon">
                             <span class="step-number">2</span>
-                            <span class="step-emoji">🎸</span>
+                            <span class="step-emoji">&#127928;</span>
                         </div>
                         <h4>Pick Instrument</h4>
                         <p>Choose from 13 instruments - piano, guitar, violin, synth, and more</p>
@@ -1219,7 +1531,7 @@
                     <div class="step">
                         <div class="step-icon">
                             <span class="step-number">3</span>
-                            <span class="step-emoji">🎧</span>
+                            <span class="step-emoji">&#127911;</span>
                         </div>
                         <h4>Build & Export</h4>
                         <p>Layer tracks, add drums, record vocals, and export your masterpiece</p>
@@ -1237,19 +1549,19 @@
                 </div>
 
                 <div class="instruments-scroll">
-                    <div class="instrument-tag"><span class="emoji">🎹</span> Piano</div>
-                    <div class="instrument-tag"><span class="emoji">🎸</span> Acoustic Guitar</div>
-                    <div class="instrument-tag"><span class="emoji">🎻</span> Violin</div>
-                    <div class="instrument-tag"><span class="emoji">🎻</span> Cello</div>
-                    <div class="instrument-tag"><span class="emoji">🎵</span> Flute</div>
-                    <div class="instrument-tag"><span class="emoji">🎷</span> Saxophone</div>
-                    <div class="instrument-tag"><span class="emoji">🎺</span> Trumpet</div>
-                    <div class="instrument-tag"><span class="emoji">🎵</span> Clarinet</div>
-                    <div class="instrument-tag"><span class="emoji">🪕</span> Harp</div>
-                    <div class="instrument-tag"><span class="emoji">🥁</span> Drums</div>
-                    <div class="instrument-tag"><span class="emoji">🎹</span> Organ</div>
-                    <div class="instrument-tag"><span class="emoji">🔊</span> Synth Lead</div>
-                    <div class="instrument-tag"><span class="emoji">🎸</span> Bass Guitar</div>
+                    <div class="instrument-tag"><span class="emoji">&#127929;</span> Piano</div>
+                    <div class="instrument-tag"><span class="emoji">&#127928;</span> Acoustic Guitar</div>
+                    <div class="instrument-tag"><span class="emoji">&#127931;</span> Violin</div>
+                    <div class="instrument-tag"><span class="emoji">&#127931;</span> Cello</div>
+                    <div class="instrument-tag"><span class="emoji">&#127926;</span> Flute</div>
+                    <div class="instrument-tag"><span class="emoji">&#127927;</span> Saxophone</div>
+                    <div class="instrument-tag"><span class="emoji">&#127930;</span> Trumpet</div>
+                    <div class="instrument-tag"><span class="emoji">&#127926;</span> Clarinet</div>
+                    <div class="instrument-tag"><span class="emoji">&#129685;</span> Harp</div>
+                    <div class="instrument-tag"><span class="emoji">&#129345;</span> Drums</div>
+                    <div class="instrument-tag"><span class="emoji">&#127929;</span> Organ</div>
+                    <div class="instrument-tag"><span class="emoji">&#128266;</span> Synth Lead</div>
+                    <div class="instrument-tag"><span class="emoji">&#127928;</span> Bass Guitar</div>
                 </div>
             </div>
         </section>
@@ -1280,7 +1592,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="/" class="logo">
-                        <div class="logo-icon">🎵</div>
+                        <div class="logo-icon">&#9835;</div>
                         TuneSplash
                     </a>
                     <p>Turn your musical ideas into reality. Hum, draw, or tap - and watch your creativity come to life.</p>
@@ -1315,7 +1627,7 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('privacy')">&times;</button>
             <h2>Privacy Policy</h2>
-            <p class="last-updated">Last updated: January 25, 2026</p>
+            <p class="last-updated">Last updated: February 9, 2026</p>
 
             <h3>Introduction</h3>
             <p>TuneSplash ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our mobile application.</p>
@@ -1352,7 +1664,7 @@
             <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
 
             <h3>Contact Us</h3>
-            <p>If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:hello@tunesplash.io" style="color: var(--primary);">hello@tunesplash.io</a></p>
+            <p>If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:hello@tunesplash.io">hello@tunesplash.io</a></p>
         </div>
     </div>
 
@@ -1361,7 +1673,7 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('terms')">&times;</button>
             <h2>Terms of Service</h2>
-            <p class="last-updated">Last updated: January 25, 2026</p>
+            <p class="last-updated">Last updated: February 9, 2026</p>
 
             <h3>1. Acceptance of Terms</h3>
             <p>By downloading, installing, or using TuneSplash ("the App"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you must not download, install, or use the App. Your use of the App constitutes your acceptance of these Terms and any future modifications.</p>
@@ -1428,11 +1740,50 @@
             <p>These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law principles. Any disputes arising from these Terms or your use of the App shall be resolved through binding arbitration or in the courts of competent jurisdiction, at TuneSplash's sole discretion.</p>
 
             <h3>17. Contact</h3>
-            <p>For questions about these Terms, please contact us at: <a href="mailto:hello@tunesplash.io" style="color: var(--primary);">hello@tunesplash.io</a></p>
+            <p>For questions about these Terms, please contact us at: <a href="mailto:hello@tunesplash.io">hello@tunesplash.io</a></p>
         </div>
     </div>
 
     <script>
+        // Generate random stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 50;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 4 + 's';
+                star.style.animationDuration = (3 + Math.random() * 3) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+
+        // Intersection Observer for feature cards
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Modal functions
         function openModal(type) {
             document.getElementById(type + '-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
