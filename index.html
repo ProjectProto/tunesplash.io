@@ -441,6 +441,144 @@
             }
         }
 
+        /* Splash Container */
+        .splash-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -4;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Splash Effect - Water Ripples */
+        .splash {
+            position: absolute;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+        .splash-ring {
+            position: absolute;
+            border: 2px solid rgba(0, 212, 170, 0.6);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleOut 1.5s ease-out forwards;
+        }
+
+        .splash-ring:nth-child(1) { animation-delay: 0s; }
+        .splash-ring:nth-child(2) { animation-delay: 0.15s; border-color: rgba(155, 89, 182, 0.5); }
+        .splash-ring:nth-child(3) { animation-delay: 0.3s; border-color: rgba(102, 126, 234, 0.4); }
+
+        @keyframes rippleOut {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            100% {
+                width: 150px;
+                height: 150px;
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Splash Text */
+        .splash-text {
+            position: absolute;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--aurora-cyan);
+            text-shadow: 0 0 10px rgba(0, 212, 170, 0.8);
+            transform: translate(-50%, -50%) scale(0);
+            animation: splashTextPop 1.2s ease-out forwards;
+            animation-delay: 0.2s;
+            white-space: nowrap;
+        }
+
+        @keyframes splashTextPop {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            30% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(0.8);
+            }
+        }
+
+        /* Mini Musical Grid */
+        .mini-grid {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            display: grid;
+            grid-template-columns: repeat(4, 8px);
+            grid-template-rows: repeat(3, 8px);
+            gap: 3px;
+            opacity: 0;
+            animation: gridAppear 1.5s ease-out forwards;
+            animation-delay: 0.4s;
+        }
+
+        .mini-grid-cell {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mini-grid-cell.active {
+            background: var(--aurora-cyan);
+            box-shadow: 0 0 8px rgba(0, 212, 170, 0.8);
+            animation: cellPulse 0.3s ease-out;
+        }
+
+        @keyframes gridAppear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -30%) scale(0.5);
+            }
+            30% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -70%) scale(0.8);
+            }
+        }
+
+        @keyframes cellPulse {
+            0% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+
+        /* Floating notes for collision - JS controlled */
+        .floating-note {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.7;
+            pointer-events: none;
+            text-shadow: 0 0 15px rgba(0, 212, 170, 0.6), 0 0 30px rgba(155, 89, 182, 0.4);
+            transition: transform 0.1s ease-out;
+            z-index: -4;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -1426,22 +1564,14 @@
         </div>
     </div>
 
-    <!-- Floating Music Notes - dancing on aurora -->
-    <div class="music-notes">
-        <span class="note">&#9834;</span>
-        <span class="note">&#9835;</span>
-        <span class="note">&#9833;</span>
-        <span class="note">&#9839;</span>
-        <span class="note">&#9834;</span>
-        <span class="note">&#9835;</span>
-        <span class="note">&#9833;</span>
-        <span class="note">&#9834;</span>
-        <span class="note">&#9835;</span>
-        <span class="note">&#9839;</span>
-    </div>
+    <!-- Floating Music Notes Container - populated by JS -->
+    <div class="music-notes"></div>
 
     <!-- Twinkling Stars -->
     <div class="stars" id="stars"></div>
+
+    <!-- Splash Effects Container -->
+    <div class="splash-container" id="splash-container"></div>
 
     <header>
         <div class="container header-content">
@@ -1803,6 +1933,185 @@
         }
 
         createStars();
+
+        // Floating Notes with Collision Detection
+        const floatingNotes = [];
+        const noteSymbols = ['♪', '♫', '♩', '♬', '♯'];
+        const noteColors = ['#00d4aa', '#9b59b6', '#667eea', '#e91e8c', '#20b2aa'];
+        const splashContainer = document.getElementById('splash-container');
+        const musicNotesContainer = document.querySelector('.music-notes');
+
+        class FloatingNote {
+            constructor() {
+                this.element = document.createElement('span');
+                this.element.className = 'floating-note';
+                this.element.textContent = noteSymbols[Math.floor(Math.random() * noteSymbols.length)];
+                this.color = noteColors[Math.floor(Math.random() * noteColors.length)];
+                this.element.style.color = this.color;
+
+                this.x = Math.random() * window.innerWidth;
+                this.y = window.innerHeight + 50;
+                this.speedX = (Math.random() - 0.5) * 2;
+                this.speedY = -(1 + Math.random() * 1.5);
+                this.wobbleOffset = Math.random() * Math.PI * 2;
+                this.size = 18 + Math.random() * 14;
+                this.element.style.fontSize = this.size + 'px';
+                this.hasCollided = false;
+
+                musicNotesContainer.appendChild(this.element);
+                this.updatePosition();
+            }
+
+            updatePosition() {
+                this.element.style.left = this.x + 'px';
+                this.element.style.top = this.y + 'px';
+            }
+
+            update(time) {
+                this.x += this.speedX + Math.sin(time * 0.002 + this.wobbleOffset) * 0.5;
+                this.y += this.speedY;
+                this.updatePosition();
+
+                // Remove if off screen
+                if (this.y < -50) {
+                    this.remove();
+                    return false;
+                }
+                return true;
+            }
+
+            remove() {
+                if (this.element.parentNode) {
+                    this.element.parentNode.removeChild(this.element);
+                }
+            }
+
+            distanceTo(other) {
+                const dx = this.x - other.x;
+                const dy = this.y - other.y;
+                return Math.sqrt(dx * dx + dy * dy);
+            }
+        }
+
+        function createSplash(x, y) {
+            const splash = document.createElement('div');
+            splash.className = 'splash';
+            splash.style.left = x + 'px';
+            splash.style.top = y + 'px';
+
+            // Create ripple rings
+            for (let i = 0; i < 3; i++) {
+                const ring = document.createElement('div');
+                ring.className = 'splash-ring';
+                splash.appendChild(ring);
+            }
+
+            // Create splash text
+            const text = document.createElement('div');
+            text.className = 'splash-text';
+            text.textContent = 'splash!';
+            splash.appendChild(text);
+
+            // Create mini musical grid
+            const grid = document.createElement('div');
+            grid.className = 'mini-grid';
+            grid.style.top = '40px';
+
+            for (let i = 0; i < 12; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'mini-grid-cell';
+                grid.appendChild(cell);
+            }
+            splash.appendChild(grid);
+
+            splashContainer.appendChild(splash);
+
+            // Animate random cells lighting up
+            const cells = grid.querySelectorAll('.mini-grid-cell');
+            const activateCell = (index, delay) => {
+                setTimeout(() => {
+                    if (cells[index]) {
+                        cells[index].classList.add('active');
+                    }
+                }, delay);
+            };
+
+            // Light up random cells in sequence
+            const pattern = [0, 5, 2, 7, 1, 10, 4, 11, 3, 8];
+            pattern.forEach((cellIndex, i) => {
+                activateCell(cellIndex, 500 + i * 80);
+            });
+
+            // Remove splash after animation
+            setTimeout(() => {
+                if (splash.parentNode) {
+                    splash.parentNode.removeChild(splash);
+                }
+            }, 2000);
+        }
+
+        function spawnNote() {
+            if (floatingNotes.length < 8) {
+                floatingNotes.push(new FloatingNote());
+            }
+        }
+
+        function checkCollisions() {
+            for (let i = 0; i < floatingNotes.length; i++) {
+                for (let j = i + 1; j < floatingNotes.length; j++) {
+                    const noteA = floatingNotes[i];
+                    const noteB = floatingNotes[j];
+
+                    if (!noteA.hasCollided && !noteB.hasCollided) {
+                        const distance = noteA.distanceTo(noteB);
+                        if (distance < 40) {
+                            // Collision detected!
+                            const midX = (noteA.x + noteB.x) / 2;
+                            const midY = (noteA.y + noteB.y) / 2;
+
+                            createSplash(midX, midY);
+
+                            noteA.hasCollided = true;
+                            noteB.hasCollided = true;
+
+                            // Make notes scatter
+                            noteA.speedX = -3;
+                            noteB.speedX = 3;
+                            noteA.speedY = -2;
+                            noteB.speedY = -2;
+
+                            // Fade out collided notes
+                            noteA.element.style.opacity = '0.3';
+                            noteB.element.style.opacity = '0.3';
+                        }
+                    }
+                }
+            }
+        }
+
+        let lastTime = 0;
+        function animateNotes(time) {
+            // Update existing notes
+            for (let i = floatingNotes.length - 1; i >= 0; i--) {
+                if (!floatingNotes[i].update(time)) {
+                    floatingNotes.splice(i, 1);
+                }
+            }
+
+            checkCollisions();
+            requestAnimationFrame(animateNotes);
+        }
+
+        // Spawn notes periodically
+        setInterval(spawnNote, 2000);
+
+        // Start with a few notes
+        setTimeout(() => spawnNote(), 500);
+        setTimeout(() => spawnNote(), 1000);
+        setTimeout(() => spawnNote(), 1500);
+
+        // Start animation loop
+        requestAnimationFrame(animateNotes);
 
         // Intersection Observer for feature cards
         const observerOptions = {
