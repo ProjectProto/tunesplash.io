@@ -522,10 +522,10 @@
         .music-staff {
             position: absolute;
             transform: translate(-50%, -50%);
-            width: 120px;
-            height: 60px;
+            width: 100px;
+            height: 50px;
             opacity: 0;
-            animation: staffAppear 3s ease-out forwards;
+            animation: staffAppear 2.8s ease-out forwards;
             animation-delay: 0.3s;
         }
 
@@ -533,126 +533,121 @@
             position: absolute;
             width: 100%;
             height: 100%;
+            animation: waveContainer 1.2s ease-in-out infinite;
         }
 
         .staff-line {
             position: absolute;
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(90deg,
-                rgba(0, 212, 170, 0.6),
-                rgba(155, 89, 182, 0.6),
-                rgba(102, 126, 234, 0.6),
-                rgba(0, 212, 170, 0.6));
+                rgba(0, 212, 170, 0.7),
+                rgba(155, 89, 182, 0.7),
+                rgba(102, 126, 234, 0.7));
             border-radius: 2px;
-            animation: waveLine 1.5s ease-in-out infinite;
         }
 
-        .staff-line:nth-child(1) { top: 0%; animation-delay: 0s; }
-        .staff-line:nth-child(2) { top: 25%; animation-delay: 0.1s; }
-        .staff-line:nth-child(3) { top: 50%; animation-delay: 0.2s; }
-        .staff-line:nth-child(4) { top: 75%; animation-delay: 0.3s; }
-        .staff-line:nth-child(5) { top: 100%; animation-delay: 0.4s; }
+        .staff-line:nth-child(1) { top: 0%; }
+        .staff-line:nth-child(2) { top: 25%; }
+        .staff-line:nth-child(3) { top: 50%; }
+        .staff-line:nth-child(4) { top: 75%; }
+        .staff-line:nth-child(5) { top: 100%; }
 
-        @keyframes waveLine {
+        @keyframes waveContainer {
             0%, 100% {
-                transform: scaleY(1) translateY(0);
-                border-radius: 2px 8px 2px 8px;
-            }
-            25% {
-                transform: scaleY(1.3) translateY(-2px);
-                border-radius: 8px 2px 8px 2px;
+                transform: translateY(0) rotate(-1deg);
             }
             50% {
-                transform: scaleY(0.8) translateY(2px);
-                border-radius: 2px 8px 2px 8px;
+                transform: translateY(-3px) rotate(1deg);
             }
-            75% {
-                transform: scaleY(1.2) translateY(-1px);
-                border-radius: 8px 2px 8px 2px;
-            }
+        }
+
+        /* Notes container moves with lines */
+        .staff-notes-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: waveContainer 1.2s ease-in-out infinite;
         }
 
         .staff-note {
             position: absolute;
-            width: 16px;
-            height: 14px;
+            width: 14px;
+            height: 11px;
             background: var(--aurora-cyan);
             border-radius: 50%;
-            transform: rotate(-15deg);
-            box-shadow: 0 0 15px rgba(0, 212, 170, 0.9), 0 0 30px rgba(0, 212, 170, 0.5);
+            transform: rotate(-20deg);
+            box-shadow: 0 0 12px rgba(0, 212, 170, 0.9), 0 0 20px rgba(0, 212, 170, 0.5);
             opacity: 0;
-            animation: noteSway 1.5s ease-in-out infinite, noteAppear 0.4s ease-out forwards;
+            animation: noteAppear 0.5s ease-out forwards;
         }
 
         .staff-note::after {
             content: '';
             position: absolute;
             right: -2px;
-            top: -26px;
-            width: 3px;
-            height: 28px;
+            top: -22px;
+            width: 2px;
+            height: 24px;
             background: var(--aurora-cyan);
             border-radius: 2px;
         }
 
         .staff-note.purple {
             background: var(--aurora-purple);
-            box-shadow: 0 0 15px rgba(155, 89, 182, 0.9), 0 0 30px rgba(155, 89, 182, 0.5);
-            animation: noteSway 1.5s ease-in-out infinite 0.2s, noteAppear 0.4s ease-out forwards;
+            box-shadow: 0 0 12px rgba(155, 89, 182, 0.9), 0 0 20px rgba(155, 89, 182, 0.5);
         }
 
         .staff-note.purple::after {
             background: var(--aurora-purple);
         }
 
-        @keyframes noteSway {
-            0%, 100% {
-                transform: rotate(-15deg) translateY(0);
-            }
-            25% {
-                transform: rotate(-12deg) translateY(-3px);
-            }
-            50% {
-                transform: rotate(-18deg) translateY(2px);
-            }
-            75% {
-                transform: rotate(-13deg) translateY(-2px);
-            }
-        }
-
         @keyframes staffAppear {
             0% {
                 opacity: 0;
-                transform: translate(-50%, -30%) scale(0.5);
+                transform: translate(-50%, -30%) scale(0.3);
             }
-            12% {
+            15% {
                 opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            25% {
                 transform: translate(-50%, -50%) scale(1);
             }
-            80% {
+            75% {
                 opacity: 1;
                 transform: translate(-50%, -50%) scale(1);
             }
             100% {
                 opacity: 0;
-                transform: translate(-50%, -60%) scale(0.9);
+                transform: translate(-50%, -55%) scale(0.9);
             }
         }
 
         @keyframes noteAppear {
             0% {
                 opacity: 0;
-                transform: rotate(-15deg) scale(0);
+                transform: rotate(-20deg) scale(0);
             }
-            50% {
+            60% {
                 opacity: 1;
-                transform: rotate(-15deg) scale(1.2);
+                transform: rotate(-20deg) scale(1.15);
             }
             100% {
                 opacity: 1;
-                transform: rotate(-15deg) scale(1);
+                transform: rotate(-20deg) scale(1);
             }
+        }
+
+        /* Splash fade out */
+        .splash {
+            animation: splashFade 2.5s ease-out forwards;
+        }
+
+        @keyframes splashFade {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
         }
 
         /* Floating notes for collision - JS controlled */
@@ -2120,19 +2115,25 @@
             }
             staff.appendChild(linesContainer);
 
-            // Add two random notes at different positions
-            const notePositions = [0, 12, 25, 37, 50, 62, 75, 87, 100]; // vertical positions (% on staff)
+            // Create notes container that moves with the wavy lines
+            const notesContainer = document.createElement('div');
+            notesContainer.className = 'staff-notes-container';
+
+            // Add two random notes at different positions on the staff lines
+            const linePositions = [0, 25, 50, 75, 100]; // Positions matching staff lines
             const horizPositions = [15, 55]; // left and right note positions
 
             for (let i = 0; i < 2; i++) {
                 const note = document.createElement('div');
                 note.className = 'staff-note' + (i === 1 ? ' purple' : '');
-                const randomY = notePositions[Math.floor(Math.random() * notePositions.length)];
+                // Pick a random line position so notes sit on lines
+                const lineIdx = Math.floor(Math.random() * linePositions.length);
                 note.style.left = horizPositions[i] + '%';
-                note.style.top = (randomY - 6) + '%';
+                note.style.top = (linePositions[lineIdx] - 6) + '%';
                 note.style.animationDelay = (0.5 + i * 0.2) + 's';
-                staff.appendChild(note);
+                notesContainer.appendChild(note);
             }
+            staff.appendChild(notesContainer);
 
             splash.appendChild(staff);
             splashContainer.appendChild(splash);
@@ -2145,38 +2146,28 @@
             }, 2000);
         }
 
-        // Spawn a collision pair - two notes from sides that meet AROUND the hero text (not on it)
+        // Spawn a collision pair - notes meet at screen EDGES only, never near center text
         function spawnCollisionPair() {
             const screenW = window.innerWidth;
             const screenH = window.innerHeight;
+            const edgeMargin = 120; // How far from edge
 
-            // Text area to AVOID (approximate hero text bounds)
-            // Text is roughly centered, from y:180 to y:500, x: center +/- 320px
-            const textLeft = screenW / 2 - 320;
-            const textRight = screenW / 2 + 320;
-
-            // Collision zones strictly OUTSIDE the text area
+            // Collision zones ONLY at far edges - never in center
             const zones = [
-                // Far LEFT margin
-                { x: 60 + Math.random() * 80, y: 180 + Math.random() * 350 },
-                { x: 100 + Math.random() * 60, y: 150 + Math.random() * 200 },
-                // Far RIGHT margin
-                { x: screenW - 60 - Math.random() * 80, y: 180 + Math.random() * 350 },
-                { x: screenW - 100 - Math.random() * 60, y: 150 + Math.random() * 200 },
-                // TOP area (above badge) - but only on sides
-                { x: 80 + Math.random() * 150, y: 100 + Math.random() * 60 },
-                { x: screenW - 80 - Math.random() * 150, y: 100 + Math.random() * 60 },
-                // BOTTOM area (below stats)
-                { x: 150 + Math.random() * (screenW - 300), y: 620 + Math.random() * 80 },
-                // Corner areas
-                { x: 100 + Math.random() * 100, y: 550 + Math.random() * 100 },
-                { x: screenW - 100 - Math.random() * 100, y: 550 + Math.random() * 100 },
+                // LEFT edge only
+                { x: 40 + Math.random() * 60, y: 150 + Math.random() * 400 },
+                { x: 50 + Math.random() * 50, y: 200 + Math.random() * 300 },
+                { x: 30 + Math.random() * 70, y: 250 + Math.random() * 250 },
+                // RIGHT edge only
+                { x: screenW - 40 - Math.random() * 60, y: 150 + Math.random() * 400 },
+                { x: screenW - 50 - Math.random() * 50, y: 200 + Math.random() * 300 },
+                { x: screenW - 30 - Math.random() * 70, y: 250 + Math.random() * 250 },
             ];
 
             // Pick a random zone
             const zone = zones[Math.floor(Math.random() * zones.length)];
-            const collisionX = Math.max(60, Math.min(screenW - 60, zone.x));
-            const collisionY = Math.max(80, Math.min(screenH - 100, zone.y));
+            const collisionX = zone.x;
+            const collisionY = zone.y;
 
             // Note 1: comes from LEFT side
             const note1 = new FloatingNote();
