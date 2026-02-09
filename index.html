@@ -518,14 +518,14 @@
             }
         }
 
-        /* Musical Staff */
+        /* Musical Staff with Wavy Lines */
         .music-staff {
             position: absolute;
             transform: translate(-50%, -50%);
-            width: 100px;
-            height: 50px;
+            width: 120px;
+            height: 60px;
             opacity: 0;
-            animation: staffAppear 2.5s ease-out forwards;
+            animation: staffAppear 3s ease-out forwards;
             animation-delay: 0.3s;
         }
 
@@ -538,47 +538,87 @@
         .staff-line {
             position: absolute;
             width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 1px;
+            height: 3px;
+            background: linear-gradient(90deg,
+                rgba(0, 212, 170, 0.6),
+                rgba(155, 89, 182, 0.6),
+                rgba(102, 126, 234, 0.6),
+                rgba(0, 212, 170, 0.6));
+            border-radius: 2px;
+            animation: waveLine 1.5s ease-in-out infinite;
         }
 
-        .staff-line:nth-child(1) { top: 0%; }
-        .staff-line:nth-child(2) { top: 25%; }
-        .staff-line:nth-child(3) { top: 50%; }
-        .staff-line:nth-child(4) { top: 75%; }
-        .staff-line:nth-child(5) { top: 100%; }
+        .staff-line:nth-child(1) { top: 0%; animation-delay: 0s; }
+        .staff-line:nth-child(2) { top: 25%; animation-delay: 0.1s; }
+        .staff-line:nth-child(3) { top: 50%; animation-delay: 0.2s; }
+        .staff-line:nth-child(4) { top: 75%; animation-delay: 0.3s; }
+        .staff-line:nth-child(5) { top: 100%; animation-delay: 0.4s; }
+
+        @keyframes waveLine {
+            0%, 100% {
+                transform: scaleY(1) translateY(0);
+                border-radius: 2px 8px 2px 8px;
+            }
+            25% {
+                transform: scaleY(1.3) translateY(-2px);
+                border-radius: 8px 2px 8px 2px;
+            }
+            50% {
+                transform: scaleY(0.8) translateY(2px);
+                border-radius: 2px 8px 2px 8px;
+            }
+            75% {
+                transform: scaleY(1.2) translateY(-1px);
+                border-radius: 8px 2px 8px 2px;
+            }
+        }
 
         .staff-note {
             position: absolute;
-            width: 14px;
-            height: 12px;
+            width: 16px;
+            height: 14px;
             background: var(--aurora-cyan);
             border-radius: 50%;
             transform: rotate(-15deg);
-            box-shadow: 0 0 12px rgba(0, 212, 170, 0.9), 0 0 25px rgba(0, 212, 170, 0.5);
+            box-shadow: 0 0 15px rgba(0, 212, 170, 0.9), 0 0 30px rgba(0, 212, 170, 0.5);
             opacity: 0;
-            animation: noteAppear 0.4s ease-out forwards;
+            animation: noteSway 1.5s ease-in-out infinite, noteAppear 0.4s ease-out forwards;
         }
 
         .staff-note::after {
             content: '';
             position: absolute;
             right: -2px;
-            top: -22px;
-            width: 2px;
-            height: 24px;
+            top: -26px;
+            width: 3px;
+            height: 28px;
             background: var(--aurora-cyan);
-            border-radius: 1px;
+            border-radius: 2px;
         }
 
         .staff-note.purple {
             background: var(--aurora-purple);
-            box-shadow: 0 0 12px rgba(155, 89, 182, 0.9), 0 0 25px rgba(155, 89, 182, 0.5);
+            box-shadow: 0 0 15px rgba(155, 89, 182, 0.9), 0 0 30px rgba(155, 89, 182, 0.5);
+            animation: noteSway 1.5s ease-in-out infinite 0.2s, noteAppear 0.4s ease-out forwards;
         }
 
         .staff-note.purple::after {
             background: var(--aurora-purple);
+        }
+
+        @keyframes noteSway {
+            0%, 100% {
+                transform: rotate(-15deg) translateY(0);
+            }
+            25% {
+                transform: rotate(-12deg) translateY(-3px);
+            }
+            50% {
+                transform: rotate(-18deg) translateY(2px);
+            }
+            75% {
+                transform: rotate(-13deg) translateY(-2px);
+            }
         }
 
         @keyframes staffAppear {
@@ -586,11 +626,11 @@
                 opacity: 0;
                 transform: translate(-50%, -30%) scale(0.5);
             }
-            15% {
+            12% {
                 opacity: 1;
                 transform: translate(-50%, -50%) scale(1);
             }
-            75% {
+            80% {
                 opacity: 1;
                 transform: translate(-50%, -50%) scale(1);
             }
@@ -2105,31 +2145,38 @@
             }, 2000);
         }
 
-        // Spawn a collision pair - two notes from sides that meet AROUND the hero text
+        // Spawn a collision pair - two notes from sides that meet AROUND the hero text (not on it)
         function spawnCollisionPair() {
             const screenW = window.innerWidth;
-            const centerX = screenW / 2;
+            const screenH = window.innerHeight;
 
-            // Collision zones AROUND the hero text (sides, above badge, below buttons)
+            // Text area to AVOID (approximate hero text bounds)
+            // Text is roughly centered, from y:180 to y:500, x: center +/- 320px
+            const textLeft = screenW / 2 - 320;
+            const textRight = screenW / 2 + 320;
+
+            // Collision zones strictly OUTSIDE the text area
             const zones = [
-                // Left side of text
-                { x: centerX - 350 - Math.random() * 100, y: 280 + Math.random() * 150 },
-                // Right side of text
-                { x: centerX + 350 + Math.random() * 100, y: 280 + Math.random() * 150 },
-                // Above the badge
-                { x: centerX - 150 + Math.random() * 300, y: 140 + Math.random() * 40 },
-                // Below the buttons, above stats
-                { x: centerX - 200 + Math.random() * 400, y: 520 + Math.random() * 60 },
-                // Far left
-                { x: 80 + Math.random() * 100, y: 200 + Math.random() * 300 },
-                // Far right
-                { x: screenW - 80 - Math.random() * 100, y: 200 + Math.random() * 300 },
+                // Far LEFT margin
+                { x: 60 + Math.random() * 80, y: 180 + Math.random() * 350 },
+                { x: 100 + Math.random() * 60, y: 150 + Math.random() * 200 },
+                // Far RIGHT margin
+                { x: screenW - 60 - Math.random() * 80, y: 180 + Math.random() * 350 },
+                { x: screenW - 100 - Math.random() * 60, y: 150 + Math.random() * 200 },
+                // TOP area (above badge) - but only on sides
+                { x: 80 + Math.random() * 150, y: 100 + Math.random() * 60 },
+                { x: screenW - 80 - Math.random() * 150, y: 100 + Math.random() * 60 },
+                // BOTTOM area (below stats)
+                { x: 150 + Math.random() * (screenW - 300), y: 620 + Math.random() * 80 },
+                // Corner areas
+                { x: 100 + Math.random() * 100, y: 550 + Math.random() * 100 },
+                { x: screenW - 100 - Math.random() * 100, y: 550 + Math.random() * 100 },
             ];
 
             // Pick a random zone
             const zone = zones[Math.floor(Math.random() * zones.length)];
-            const collisionX = Math.max(80, Math.min(screenW - 80, zone.x));
-            const collisionY = zone.y;
+            const collisionX = Math.max(60, Math.min(screenW - 60, zone.x));
+            const collisionY = Math.max(80, Math.min(screenH - 100, zone.y));
 
             // Note 1: comes from LEFT side
             const note1 = new FloatingNote();
