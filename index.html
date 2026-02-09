@@ -1968,12 +1968,13 @@
             }
 
             update(time) {
-                this.x += this.speedX + Math.sin(time * 0.002 + this.wobbleOffset) * 0.5;
+                this.x += this.speedX + Math.sin(time * 0.002 + this.wobbleOffset) * 0.3;
                 this.y += this.speedY;
                 this.updatePosition();
 
-                // Remove if off screen
-                if (this.y < -50) {
+                // Remove if off screen (any direction)
+                if (this.y < -50 || this.y > window.innerHeight + 100 ||
+                    this.x < -100 || this.x > window.innerWidth + 100) {
                     this.remove();
                     return false;
                 }
@@ -2050,42 +2051,39 @@
             }, 2000);
         }
 
-        // Spawn a collision pair - two notes that will definitely meet
+        // Spawn a collision pair - two notes from sides that meet in hero section
         function spawnCollisionPair() {
-            if (floatingNotes.length > 10) return; // Don't overcrowd
+            // Collision point in hero section (upper portion of screen)
+            const collisionX = 150 + Math.random() * (window.innerWidth - 300);
+            const collisionY = 250 + Math.random() * 200; // Hero area: 250-450px from top
 
-            // Random collision point in the visible area
-            const collisionX = 100 + Math.random() * (window.innerWidth - 200);
-            const collisionY = 200 + Math.random() * (window.innerHeight - 400);
-
-            // Time to collision (frames)
-            const timeToCollision = 120 + Math.random() * 60; // 2-3 seconds at 60fps
-
-            // Note 1: comes from bottom-left
+            // Note 1: comes from LEFT side
             const note1 = new FloatingNote();
-            note1.x = collisionX - 80 - Math.random() * 40;
-            note1.y = window.innerHeight + 30;
-            note1.speedX = (collisionX - note1.x) / timeToCollision;
-            note1.speedY = (collisionY - note1.y) / timeToCollision;
+            note1.x = -30;
+            note1.y = collisionY + (Math.random() - 0.5) * 100;
+            note1.speedX = 2.5 + Math.random(); // Move right
+            note1.speedY = (collisionY - note1.y) / ((collisionX - note1.x) / note1.speedX);
+            note1.element.style.opacity = '0.8';
             floatingNotes.push(note1);
 
-            // Note 2: comes from bottom-right (spawn slightly delayed for visual interest)
-            setTimeout(() => {
-                const note2 = new FloatingNote();
-                note2.x = collisionX + 80 + Math.random() * 40;
-                note2.y = window.innerHeight + 30;
-                note2.speedX = (collisionX - note2.x) / (timeToCollision - 10);
-                note2.speedY = (collisionY - note2.y) / (timeToCollision - 10);
-                floatingNotes.push(note2);
-            }, 150);
+            // Note 2: comes from RIGHT side
+            const note2 = new FloatingNote();
+            note2.x = window.innerWidth + 30;
+            note2.y = collisionY + (Math.random() - 0.5) * 100;
+            note2.speedX = -(2.5 + Math.random()); // Move left
+            note2.speedY = (collisionY - note2.y) / ((collisionX - note2.x) / note2.speedX);
+            note2.element.style.opacity = '0.8';
+            floatingNotes.push(note2);
         }
 
-        // Spawn a solo wandering note (for ambiance)
-        function spawnSoloNote() {
-            if (floatingNotes.length > 12) return;
+        // Spawn notes from bottom that float up
+        function spawnRisingNote() {
+            if (floatingNotes.length > 20) return;
             const note = new FloatingNote();
-            note.speedY = -(0.8 + Math.random() * 0.8);
-            note.speedX = (Math.random() - 0.5) * 1.5;
+            note.x = 50 + Math.random() * (window.innerWidth - 100);
+            note.y = window.innerHeight + 30;
+            note.speedY = -(1 + Math.random() * 1.5);
+            note.speedX = (Math.random() - 0.5) * 2;
             floatingNotes.push(note);
         }
 
@@ -2097,7 +2095,7 @@
 
                     if (!noteA.hasCollided && !noteB.hasCollided) {
                         const distance = noteA.distanceTo(noteB);
-                        if (distance < 45) {
+                        if (distance < 50) {
                             // Collision detected!
                             const midX = (noteA.x + noteB.x) / 2;
                             const midY = (noteA.y + noteB.y) / 2;
@@ -2108,14 +2106,14 @@
                             noteB.hasCollided = true;
 
                             // Make notes scatter
-                            noteA.speedX = -2.5 - Math.random();
-                            noteB.speedX = 2.5 + Math.random();
-                            noteA.speedY = -2 - Math.random();
-                            noteB.speedY = -2 - Math.random();
+                            noteA.speedX = -3 - Math.random() * 2;
+                            noteB.speedX = 3 + Math.random() * 2;
+                            noteA.speedY = -2 - Math.random() * 2;
+                            noteB.speedY = -2 - Math.random() * 2;
 
                             // Fade out collided notes
-                            noteA.element.style.opacity = '0.3';
-                            noteB.element.style.opacity = '0.3';
+                            noteA.element.style.opacity = '0.2';
+                            noteB.element.style.opacity = '0.2';
                         }
                     }
                 }
@@ -2134,27 +2132,28 @@
             requestAnimationFrame(animateNotes);
         }
 
-        // Spawn collision pairs every 5-7 seconds
+        // Spawn collision pairs every 3-5 seconds
         function scheduleNextCollision() {
-            const delay = 5000 + Math.random() * 2000;
+            const delay = 3000 + Math.random() * 2000;
             setTimeout(() => {
                 spawnCollisionPair();
                 scheduleNextCollision();
             }, delay);
         }
 
-        // Spawn solo notes for ambiance
-        setInterval(spawnSoloNote, 3000);
+        // Spawn rising notes frequently for more activity
+        setInterval(spawnRisingNote, 1500);
 
-        // Start with a collision pair after 2 seconds
-        setTimeout(spawnCollisionPair, 2000);
+        // Start with a collision pair quickly
+        setTimeout(spawnCollisionPair, 1500);
 
         // Schedule ongoing collisions
         scheduleNextCollision();
 
-        // Add a few solo notes initially
-        setTimeout(spawnSoloNote, 500);
-        setTimeout(spawnSoloNote, 1200);
+        // Add several rising notes initially
+        for (let i = 0; i < 5; i++) {
+            setTimeout(spawnRisingNote, 300 * i);
+        }
 
         // Start animation loop
         requestAnimationFrame(animateNotes);
