@@ -518,54 +518,101 @@
             }
         }
 
-        /* Mini Musical Grid */
-        .mini-grid {
+        /* Musical Staff */
+        .music-staff {
             position: absolute;
             transform: translate(-50%, -50%);
-            display: grid;
-            grid-template-columns: repeat(4, 8px);
-            grid-template-rows: repeat(3, 8px);
-            gap: 3px;
+            width: 100px;
+            height: 50px;
             opacity: 0;
-            animation: gridAppear 1.5s ease-out forwards;
-            animation-delay: 0.4s;
+            animation: staffAppear 2.5s ease-out forwards;
+            animation-delay: 0.3s;
         }
 
-        .mini-grid-cell {
-            width: 8px;
-            height: 8px;
-            border-radius: 2px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .staff-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
         }
 
-        .mini-grid-cell.active {
+        .staff-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 1px;
+        }
+
+        .staff-line:nth-child(1) { top: 0%; }
+        .staff-line:nth-child(2) { top: 25%; }
+        .staff-line:nth-child(3) { top: 50%; }
+        .staff-line:nth-child(4) { top: 75%; }
+        .staff-line:nth-child(5) { top: 100%; }
+
+        .staff-note {
+            position: absolute;
+            width: 14px;
+            height: 12px;
             background: var(--aurora-cyan);
-            box-shadow: 0 0 8px rgba(0, 212, 170, 0.8);
-            animation: cellPulse 0.3s ease-out;
+            border-radius: 50%;
+            transform: rotate(-15deg);
+            box-shadow: 0 0 12px rgba(0, 212, 170, 0.9), 0 0 25px rgba(0, 212, 170, 0.5);
+            opacity: 0;
+            animation: noteAppear 0.4s ease-out forwards;
         }
 
-        @keyframes gridAppear {
+        .staff-note::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: -22px;
+            width: 2px;
+            height: 24px;
+            background: var(--aurora-cyan);
+            border-radius: 1px;
+        }
+
+        .staff-note.purple {
+            background: var(--aurora-purple);
+            box-shadow: 0 0 12px rgba(155, 89, 182, 0.9), 0 0 25px rgba(155, 89, 182, 0.5);
+        }
+
+        .staff-note.purple::after {
+            background: var(--aurora-purple);
+        }
+
+        @keyframes staffAppear {
             0% {
                 opacity: 0;
                 transform: translate(-50%, -30%) scale(0.5);
             }
-            30% {
+            15% {
                 opacity: 1;
                 transform: translate(-50%, -50%) scale(1);
             }
-            80% {
+            75% {
                 opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
             }
             100% {
                 opacity: 0;
-                transform: translate(-50%, -70%) scale(0.8);
+                transform: translate(-50%, -60%) scale(0.9);
             }
         }
 
-        @keyframes cellPulse {
-            0% { transform: scale(1.5); }
-            100% { transform: scale(1); }
+        @keyframes noteAppear {
+            0% {
+                opacity: 0;
+                transform: rotate(-15deg) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: rotate(-15deg) scale(1.2);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(-15deg) scale(1);
+            }
         }
 
         /* Floating notes for collision - JS controlled */
@@ -2018,35 +2065,37 @@
             text.textContent = 'splash!';
             splash.appendChild(text);
 
-            // Create mini musical grid
-            const grid = document.createElement('div');
-            grid.className = 'mini-grid';
-            grid.style.top = '40px';
+            // Create musical staff with notes
+            const staff = document.createElement('div');
+            staff.className = 'music-staff';
+            staff.style.top = '50px';
 
-            for (let i = 0; i < 12; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'mini-grid-cell';
-                grid.appendChild(cell);
+            // Create 5 staff lines
+            const linesContainer = document.createElement('div');
+            linesContainer.className = 'staff-lines';
+            for (let i = 0; i < 5; i++) {
+                const line = document.createElement('div');
+                line.className = 'staff-line';
+                linesContainer.appendChild(line);
             }
-            splash.appendChild(grid);
+            staff.appendChild(linesContainer);
 
+            // Add two random notes at different positions
+            const notePositions = [0, 12, 25, 37, 50, 62, 75, 87, 100]; // vertical positions (% on staff)
+            const horizPositions = [15, 55]; // left and right note positions
+
+            for (let i = 0; i < 2; i++) {
+                const note = document.createElement('div');
+                note.className = 'staff-note' + (i === 1 ? ' purple' : '');
+                const randomY = notePositions[Math.floor(Math.random() * notePositions.length)];
+                note.style.left = horizPositions[i] + '%';
+                note.style.top = (randomY - 6) + '%';
+                note.style.animationDelay = (0.5 + i * 0.2) + 's';
+                staff.appendChild(note);
+            }
+
+            splash.appendChild(staff);
             splashContainer.appendChild(splash);
-
-            // Animate random cells lighting up
-            const cells = grid.querySelectorAll('.mini-grid-cell');
-            const activateCell = (index, delay) => {
-                setTimeout(() => {
-                    if (cells[index]) {
-                        cells[index].classList.add('active');
-                    }
-                }, delay);
-            };
-
-            // Light up random cells in sequence
-            const pattern = [0, 5, 2, 7, 1, 10, 4, 11, 3, 8];
-            pattern.forEach((cellIndex, i) => {
-                activateCell(cellIndex, 500 + i * 80);
-            });
 
             // Remove splash after animation
             setTimeout(() => {
