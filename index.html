@@ -2199,6 +2199,22 @@
             floatingNotes.push(note);
         }
 
+        // Exclusion zone around hero content - no splashes allowed here
+        function isInHeroExclusionZone(x, y) {
+            const screenW = window.innerWidth;
+            const screenH = window.innerHeight;
+
+            // Define exclusion box: centered horizontally, covers hero content
+            // Box is roughly 700px wide (or 80% on mobile), from y=100 to y=750
+            const boxWidth = Math.min(700, screenW * 0.8);
+            const boxLeft = (screenW - boxWidth) / 2;
+            const boxRight = boxLeft + boxWidth;
+            const boxTop = 100;
+            const boxBottom = 750;
+
+            return x > boxLeft && x < boxRight && y > boxTop && y < boxBottom;
+        }
+
         function checkCollisions() {
             for (let i = 0; i < floatingNotes.length; i++) {
                 for (let j = i + 1; j < floatingNotes.length; j++) {
@@ -2212,7 +2228,10 @@
                             const midX = (noteA.x + noteB.x) / 2;
                             const midY = (noteA.y + noteB.y) / 2;
 
-                            createSplash(midX, midY);
+                            // Only create splash if OUTSIDE the hero exclusion zone
+                            if (!isInHeroExclusionZone(midX, midY)) {
+                                createSplash(midX, midY);
+                            }
 
                             noteA.hasCollided = true;
                             noteB.hasCollided = true;
