@@ -165,99 +165,36 @@
             width: 200%;
             left: -50%;
             height: 40%;
-            filter: blur(80px);
-            opacity: 0.35;
-            mix-blend-mode: screen;
+            filter: blur(60px);
+            opacity: 0.3;
         }
 
         .aurora-band-1 {
             bottom: 10%;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                rgba(0, 212, 170, 0.25) 20%,
-                rgba(32, 178, 170, 0.3) 35%,
-                rgba(102, 126, 234, 0.25) 50%,
-                rgba(155, 89, 182, 0.3) 65%,
-                rgba(0, 212, 170, 0.2) 80%,
-                transparent 100%);
-            animation: auroraBand1 12s ease-in-out infinite;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.2) 50%, transparent);
+            animation: auroraSway 20s ease-in-out infinite;
         }
 
         .aurora-band-2 {
             bottom: 25%;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                rgba(155, 89, 182, 0.2) 15%,
-                rgba(233, 30, 140, 0.25) 30%,
-                rgba(102, 126, 234, 0.3) 50%,
-                rgba(0, 212, 170, 0.25) 70%,
-                rgba(155, 89, 182, 0.2) 85%,
-                transparent 100%);
-            animation: auroraBand2 15s ease-in-out infinite;
-            animation-delay: -3s;
+            background: linear-gradient(90deg, transparent, rgba(155, 89, 182, 0.2) 50%, transparent);
+            animation: auroraSway 25s ease-in-out infinite reverse;
         }
 
         .aurora-band-3 {
             bottom: 40%;
             height: 30%;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                rgba(102, 126, 234, 0.2) 25%,
-                rgba(0, 212, 170, 0.25) 45%,
-                rgba(32, 178, 170, 0.2) 55%,
-                rgba(155, 89, 182, 0.25) 75%,
-                transparent 100%);
-            animation: auroraBand3 18s ease-in-out infinite;
-            animation-delay: -6s;
-            opacity: 0.25;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.15) 50%, transparent);
+            animation: auroraSway 30s ease-in-out infinite;
+            opacity: 0.2;
         }
 
-        @keyframes auroraBand1 {
-            0%, 100% {
-                transform: translateX(-10%) skewY(-2deg) scaleY(1);
-                opacity: 0.5;
-            }
-            25% {
-                transform: translateX(5%) skewY(1deg) scaleY(1.2);
-                opacity: 0.7;
-            }
-            50% {
-                transform: translateX(10%) skewY(2deg) scaleY(0.9);
-                opacity: 0.6;
-            }
-            75% {
-                transform: translateX(-5%) skewY(-1deg) scaleY(1.1);
-                opacity: 0.5;
-            }
+        @keyframes auroraSway {
+            0%, 100% { transform: translateX(-5%); }
+            50% { transform: translateX(5%); }
         }
 
-        @keyframes auroraBand2 {
-            0%, 100% {
-                transform: translateX(10%) skewY(1deg) scaleY(1);
-                opacity: 0.4;
-            }
-            33% {
-                transform: translateX(-8%) skewY(-2deg) scaleY(1.3);
-                opacity: 0.6;
-            }
-            66% {
-                transform: translateX(5%) skewY(1deg) scaleY(0.8);
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes auroraBand3 {
-            0%, 100% {
-                transform: translateX(-5%) skewY(-1deg);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translateX(8%) skewY(2deg);
-                opacity: 0.5;
-            }
-        }
-
-        /* Vertical aurora streaks - behind content */
+        /* Vertical aurora streaks - simplified */
         .aurora-streaks {
             position: absolute;
             bottom: 0;
@@ -271,22 +208,15 @@
             position: absolute;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(to top,
-                rgba(0, 212, 170, 0.5) 0%,
-                rgba(102, 126, 234, 0.4) 30%,
-                rgba(155, 89, 182, 0.25) 60%,
-                transparent 100%);
-            filter: blur(3px);
-            animation: streakRise 8s ease-out infinite;
+            background: linear-gradient(to top, rgba(0, 212, 170, 0.4) 0%, transparent 100%);
+            animation: streakRise 12s ease-out infinite;
         }
 
-        .aurora-streak:nth-child(1) { left: 10%; height: 50%; animation-delay: 0s; }
-        .aurora-streak:nth-child(2) { left: 20%; height: 60%; animation-delay: 1.5s; }
-        .aurora-streak:nth-child(3) { left: 35%; height: 45%; animation-delay: 3s; }
-        .aurora-streak:nth-child(4) { left: 50%; height: 55%; animation-delay: 0.8s; }
-        .aurora-streak:nth-child(5) { left: 65%; height: 50%; animation-delay: 2.2s; }
-        .aurora-streak:nth-child(6) { left: 80%; height: 65%; animation-delay: 4s; }
-        .aurora-streak:nth-child(7) { left: 90%; height: 40%; animation-delay: 1s; }
+        .aurora-streak:nth-child(1) { left: 15%; height: 50%; }
+        .aurora-streak:nth-child(2) { left: 35%; height: 60%; animation-delay: 2s; }
+        .aurora-streak:nth-child(3) { left: 55%; height: 45%; animation-delay: 4s; }
+        .aurora-streak:nth-child(4) { left: 75%; height: 55%; animation-delay: 6s; }
+        .aurora-streak:nth-child(5), .aurora-streak:nth-child(6), .aurora-streak:nth-child(7) { display: none; }
 
         @keyframes streakRise {
             0% {
@@ -380,48 +310,43 @@
             position: absolute;
             background: white;
             border-radius: 50%;
-            opacity: 0;
         }
 
         .star.small {
             width: 1px;
             height: 1px;
-            animation: twinkle 3s ease-in-out infinite;
+            animation: twinkle 4s ease-in-out infinite;
         }
 
         .star.medium {
             width: 2px;
             height: 2px;
-            animation: twinkleBright 4s ease-in-out infinite;
-        }
-
-        .star.large {
-            width: 3px;
-            height: 3px;
-            box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.5);
-            animation: twinkleBright 5s ease-in-out infinite;
+            animation: twinkle 5s ease-in-out infinite;
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.1; transform: scale(0.5); }
-            50% { opacity: 0.6; transform: scale(1); }
-        }
-
-        @keyframes twinkleBright {
-            0%, 100% { opacity: 0.2; transform: scale(0.6); }
-            50% { opacity: 1; transform: scale(1.2); }
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.7; }
         }
 
         /* Reduce animations on mobile for performance */
         @media (max-width: 768px) {
             .aurora-band {
                 filter: blur(40px);
+                animation-duration: 30s;
             }
             .aurora-streak {
                 display: none;
             }
-            .note {
-                font-size: 18px !important;
+            .star {
+                animation: none;
+                opacity: 0.4;
+            }
+            .floating-note {
+                display: none;
+            }
+            .splash {
+                display: none;
             }
         }
 
@@ -453,11 +378,13 @@
             overflow: hidden;
         }
 
-        /* Splash Effect - Water Ripples */
+        /* Splash Effect - Simple ripple */
         .splash {
             position: absolute;
+            left: 0;
+            top: 0;
             pointer-events: none;
-            transform: translate(-50%, -50%);
+            animation: splashFade 1.5s ease-out forwards;
         }
 
         .splash-ring {
@@ -465,183 +392,30 @@
             border: 2px solid rgba(0, 212, 170, 0.6);
             border-radius: 50%;
             transform: translate(-50%, -50%) scale(0);
-            animation: rippleOut 1.5s ease-out forwards;
+            animation: rippleOut 1.2s ease-out forwards;
         }
-
-        .splash-ring:nth-child(1) { animation-delay: 0s; }
-        .splash-ring:nth-child(2) { animation-delay: 0.15s; border-color: rgba(155, 89, 182, 0.5); }
-        .splash-ring:nth-child(3) { animation-delay: 0.3s; border-color: rgba(102, 126, 234, 0.4); }
 
         @keyframes rippleOut {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(0);
-            }
-            100% {
-                width: 150px;
-                height: 150px;
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(1);
-            }
+            0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) scale(0); }
+            100% { width: 120px; height: 120px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
         }
 
-        /* Splash Text */
         .splash-text {
             position: absolute;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--aurora-cyan);
-            text-shadow: 0 0 10px rgba(0, 212, 170, 0.8);
+            text-shadow: 0 0 8px rgba(0, 212, 170, 0.7);
             transform: translate(-50%, -50%) scale(0);
-            animation: splashTextPop 1.2s ease-out forwards;
-            animation-delay: 0.2s;
+            animation: splashTextPop 1s ease-out forwards;
+            animation-delay: 0.1s;
             white-space: nowrap;
         }
 
         @keyframes splashTextPop {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0);
-            }
-            30% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -60%) scale(0.8);
-            }
-        }
-
-        /* Musical Staff with Wavy Lines */
-        .music-staff {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            width: 100px;
-            height: 50px;
-            opacity: 0;
-            animation: staffAppear 2.8s ease-out forwards;
-            animation-delay: 0.3s;
-        }
-
-        .staff-lines {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            animation: waveContainer 1.2s ease-in-out infinite;
-        }
-
-        .staff-line {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg,
-                rgba(0, 212, 170, 0.7),
-                rgba(155, 89, 182, 0.7),
-                rgba(102, 126, 234, 0.7));
-            border-radius: 2px;
-        }
-
-        .staff-line:nth-child(1) { top: 0%; }
-        .staff-line:nth-child(2) { top: 25%; }
-        .staff-line:nth-child(3) { top: 50%; }
-        .staff-line:nth-child(4) { top: 75%; }
-        .staff-line:nth-child(5) { top: 100%; }
-
-        @keyframes waveContainer {
-            0%, 100% {
-                transform: translateY(0) rotate(-1deg);
-            }
-            50% {
-                transform: translateY(-3px) rotate(1deg);
-            }
-        }
-
-        /* Notes container moves with lines */
-        .staff-notes-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            animation: waveContainer 1.2s ease-in-out infinite;
-        }
-
-        .staff-note {
-            position: absolute;
-            width: 14px;
-            height: 11px;
-            background: var(--aurora-cyan);
-            border-radius: 50%;
-            transform: rotate(-20deg);
-            box-shadow: 0 0 12px rgba(0, 212, 170, 0.9), 0 0 20px rgba(0, 212, 170, 0.5);
-            opacity: 0;
-            animation: noteAppear 0.5s ease-out forwards;
-        }
-
-        .staff-note::after {
-            content: '';
-            position: absolute;
-            right: -2px;
-            top: -22px;
-            width: 2px;
-            height: 24px;
-            background: var(--aurora-cyan);
-            border-radius: 2px;
-        }
-
-        .staff-note.purple {
-            background: var(--aurora-purple);
-            box-shadow: 0 0 12px rgba(155, 89, 182, 0.9), 0 0 20px rgba(155, 89, 182, 0.5);
-        }
-
-        .staff-note.purple::after {
-            background: var(--aurora-purple);
-        }
-
-        @keyframes staffAppear {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -30%) scale(0.3);
-            }
-            15% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-            25% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-            75% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -55%) scale(0.9);
-            }
-        }
-
-        @keyframes noteAppear {
-            0% {
-                opacity: 0;
-                transform: rotate(-20deg) scale(0);
-            }
-            60% {
-                opacity: 1;
-                transform: rotate(-20deg) scale(1.15);
-            }
-            100% {
-                opacity: 1;
-                transform: rotate(-20deg) scale(1);
-            }
-        }
-
-        /* Splash fade out */
-        .splash {
-            animation: splashFade 2.5s ease-out forwards;
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            30% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            100% { opacity: 0; transform: translate(-50%, -60%) scale(0.8); }
         }
 
         @keyframes splashFade {
@@ -650,14 +424,15 @@
             100% { opacity: 0; }
         }
 
-        /* Floating notes for collision - JS controlled */
+        /* Floating notes for collision - GPU accelerated */
         .floating-note {
             position: absolute;
+            left: 0;
+            top: 0;
             font-size: 24px;
             opacity: 0.7;
             pointer-events: none;
-            text-shadow: 0 0 15px rgba(0, 212, 170, 0.6), 0 0 30px rgba(155, 89, 182, 0.4);
-            transition: transform 0.1s ease-out;
+            text-shadow: 0 0 10px rgba(0, 212, 170, 0.5);
             z-index: 1;
         }
 
@@ -2000,11 +1775,10 @@
         function createStars() {
             const starsContainer = document.getElementById('stars');
 
-            // Create many more stars with different sizes
+            // Minimal stars for performance
             const starConfigs = [
-                { count: 80, size: 'small' },
-                { count: 40, size: 'medium' },
-                { count: 15, size: 'large' }
+                { count: 20, size: 'small' },
+                { count: 10, size: 'medium' }
             ];
 
             starConfigs.forEach(config => {
@@ -2033,15 +1807,14 @@
                 this.element = document.createElement('span');
                 this.element.className = 'floating-note';
                 this.element.textContent = noteSymbols[Math.floor(Math.random() * noteSymbols.length)];
-                this.color = noteColors[Math.floor(Math.random() * noteColors.length)];
-                this.element.style.color = this.color;
+                this.element.style.color = noteColors[Math.floor(Math.random() * noteColors.length)];
+                this.element.style.willChange = 'transform';
 
                 this.x = Math.random() * window.innerWidth;
                 this.y = window.innerHeight + 50;
-                this.speedX = (Math.random() - 0.5) * 2;
-                this.speedY = -(1 + Math.random() * 1.5);
-                this.wobbleOffset = Math.random() * Math.PI * 2;
-                this.size = 18 + Math.random() * 14;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.speedY = -(0.8 + Math.random() * 1);
+                this.size = 20 + Math.random() * 10;
                 this.element.style.fontSize = this.size + 'px';
                 this.hasCollided = false;
 
@@ -2050,16 +1823,14 @@
             }
 
             updatePosition() {
-                this.element.style.left = this.x + 'px';
-                this.element.style.top = this.y + 'px';
+                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
 
-            update(time) {
-                this.x += this.speedX + Math.sin(time * 0.002 + this.wobbleOffset) * 0.3;
+            update() {
+                this.x += this.speedX;
                 this.y += this.speedY;
                 this.updatePosition();
 
-                // Remove if off screen (any direction)
                 if (this.y < -50 || this.y > window.innerHeight + 100 ||
                     this.x < -100 || this.x > window.innerWidth + 100) {
                     this.remove();
@@ -2084,66 +1855,25 @@
         function createSplash(x, y) {
             const splash = document.createElement('div');
             splash.className = 'splash';
-            splash.style.left = x + 'px';
-            splash.style.top = y + 'px';
+            splash.style.transform = `translate(${x}px, ${y}px)`;
 
-            // Create ripple rings
-            for (let i = 0; i < 3; i++) {
-                const ring = document.createElement('div');
-                ring.className = 'splash-ring';
-                splash.appendChild(ring);
-            }
+            // Single ripple ring
+            const ring = document.createElement('div');
+            ring.className = 'splash-ring';
+            splash.appendChild(ring);
 
-            // Create splash text
+            // Splash text
             const text = document.createElement('div');
             text.className = 'splash-text';
             text.textContent = 'splash!';
             splash.appendChild(text);
 
-            // Create musical staff with notes
-            const staff = document.createElement('div');
-            staff.className = 'music-staff';
-            staff.style.top = '50px';
-
-            // Create 5 staff lines
-            const linesContainer = document.createElement('div');
-            linesContainer.className = 'staff-lines';
-            for (let i = 0; i < 5; i++) {
-                const line = document.createElement('div');
-                line.className = 'staff-line';
-                linesContainer.appendChild(line);
-            }
-            staff.appendChild(linesContainer);
-
-            // Create notes container that moves with the wavy lines
-            const notesContainer = document.createElement('div');
-            notesContainer.className = 'staff-notes-container';
-
-            // Add two random notes at different positions on the staff lines
-            const linePositions = [0, 25, 50, 75, 100]; // Positions matching staff lines
-            const horizPositions = [15, 55]; // left and right note positions
-
-            for (let i = 0; i < 2; i++) {
-                const note = document.createElement('div');
-                note.className = 'staff-note' + (i === 1 ? ' purple' : '');
-                // Pick a random line position so notes sit on lines
-                const lineIdx = Math.floor(Math.random() * linePositions.length);
-                note.style.left = horizPositions[i] + '%';
-                note.style.top = (linePositions[lineIdx] - 6) + '%';
-                note.style.animationDelay = (0.5 + i * 0.2) + 's';
-                notesContainer.appendChild(note);
-            }
-            staff.appendChild(notesContainer);
-
-            splash.appendChild(staff);
             splashContainer.appendChild(splash);
 
-            // Remove splash after animation
+            // Remove after animation
             setTimeout(() => {
-                if (splash.parentNode) {
-                    splash.parentNode.removeChild(splash);
-                }
-            }, 2000);
+                if (splash.parentNode) splash.parentNode.removeChild(splash);
+            }, 1500);
         }
 
         // Spawn a collision pair - notes meet at screen EDGES only, never near center text
@@ -2188,14 +1918,14 @@
             floatingNotes.push(note2);
         }
 
-        // Spawn notes from bottom that float up
+        // Spawn notes from bottom that float up - limited for performance
         function spawnRisingNote() {
-            if (floatingNotes.length > 20) return;
+            if (floatingNotes.length > 8) return;
             const note = new FloatingNote();
             note.x = 50 + Math.random() * (window.innerWidth - 100);
             note.y = window.innerHeight + 30;
-            note.speedY = -(1 + Math.random() * 1.5);
-            note.speedX = (Math.random() - 0.5) * 2;
+            note.speedY = -(0.6 + Math.random() * 0.8);
+            note.speedX = (Math.random() - 0.5) * 1;
             floatingNotes.push(note);
         }
 
@@ -2251,42 +1981,36 @@
             }
         }
 
-        function animateNotes(time) {
-            // Update existing notes
+        function animateNotes() {
             for (let i = floatingNotes.length - 1; i >= 0; i--) {
-                if (!floatingNotes[i].update(time)) {
+                if (!floatingNotes[i].update()) {
                     floatingNotes.splice(i, 1);
                 }
             }
-
             checkCollisions();
             requestAnimationFrame(animateNotes);
         }
 
-        // Spawn collision pairs every 3-5 seconds
+        // Spawn collision pairs every 6-10 seconds (less frequent)
         function scheduleNextCollision() {
-            const delay = 3000 + Math.random() * 2000;
+            const delay = 6000 + Math.random() * 4000;
             setTimeout(() => {
-                spawnCollisionPair();
+                if (floatingNotes.length < 6) spawnCollisionPair();
                 scheduleNextCollision();
             }, delay);
         }
 
-        // Spawn rising notes frequently for more activity
-        setInterval(spawnRisingNote, 1500);
+        // Spawn rising notes less frequently
+        setInterval(spawnRisingNote, 3000);
 
-        // Start with a collision pair quickly
-        setTimeout(spawnCollisionPair, 1500);
-
-        // Schedule ongoing collisions
+        // Start with one collision after delay
+        setTimeout(spawnCollisionPair, 2000);
         scheduleNextCollision();
 
-        // Add several rising notes initially
-        for (let i = 0; i < 5; i++) {
-            setTimeout(spawnRisingNote, 300 * i);
-        }
+        // Just 2 initial notes
+        setTimeout(spawnRisingNote, 500);
+        setTimeout(spawnRisingNote, 1000);
 
-        // Start animation loop
         requestAnimationFrame(animateNotes);
 
         // Intersection Observer for feature cards
